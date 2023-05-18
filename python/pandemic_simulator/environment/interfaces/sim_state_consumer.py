@@ -1,11 +1,8 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from abc import ABC, abstractmethod
 from typing import Any
 
 from .regulation import PandemicRegulation
 from .sim_state import PandemicSimState
-
-__all__ = ['SimStateConsumer']
 
 
 class SimStateConsumer(ABC):

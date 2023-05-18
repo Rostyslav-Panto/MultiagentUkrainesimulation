@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from dataclasses import dataclass
 from typing import List, Tuple, Optional, Sequence
 
@@ -7,7 +6,6 @@ import numpy as np
 from .interfaces import LocationID, globals, SimTimeTuple, BusinessBaseLocation
 from .simulator_config import LocationConfig
 
-__all__ = ['JobCounselor']
 
 
 @dataclass(frozen=True)

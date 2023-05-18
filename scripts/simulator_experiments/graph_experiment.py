@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import List
 
 from matplotlib import pyplot as plt

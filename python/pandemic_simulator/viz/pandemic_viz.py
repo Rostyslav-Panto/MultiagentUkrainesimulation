@@ -1,8 +1,5 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from abc import ABC, abstractmethod
 from typing import Any
-
-__all__ = ['PandemicViz']
 
 
 class PandemicViz(ABC):

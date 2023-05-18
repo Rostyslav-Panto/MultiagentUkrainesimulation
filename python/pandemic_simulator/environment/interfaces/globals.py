@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import Optional
 
 import numpy as np

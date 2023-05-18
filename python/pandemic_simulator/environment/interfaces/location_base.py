@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from abc import ABCMeta
 from copy import deepcopy
 from typing import Optional, cast, TypeVar, Union
@@ -15,7 +14,6 @@ from .pandemic_types import DEFAULT
 from .registry import Registry
 from .sim_time import SimTime, SimTimeTuple
 
-__all__ = ['BaseLocation']
 
 _State = TypeVar('_State', bound=LocationState)
 

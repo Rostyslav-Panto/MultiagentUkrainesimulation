@@ -1,4 +1,4 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
+
 from tqdm import trange
 
 import pandemic_simulator as ps

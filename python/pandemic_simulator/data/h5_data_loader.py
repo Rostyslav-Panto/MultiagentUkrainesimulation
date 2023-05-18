@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 import dataclasses
 from collections import OrderedDict
@@ -12,7 +11,6 @@ from pandemic_simulator.environment import PandemicObservation
 from .interfaces import ExperimentDataLoader, ExperimentResult, StageSchedule
 from ..environment import PandemicSimOpts
 
-__all__ = ['H5DataLoader']
 
 
 class H5DataLoader(ExperimentDataLoader):

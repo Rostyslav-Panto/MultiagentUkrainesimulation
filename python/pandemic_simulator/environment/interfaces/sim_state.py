@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from dataclasses import dataclass
 from typing import Dict, Mapping, Tuple, Type
@@ -10,8 +9,6 @@ from .location_states import LocationState
 from .pandemic_testing import GlobalTestingState
 from .person import PersonState
 from .sim_time import SimTime
-
-__all__ = ['PandemicSimState']
 
 
 @dataclass

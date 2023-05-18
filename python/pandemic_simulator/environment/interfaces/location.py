@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Type, Generic, TypeVar, ClassVar
@@ -8,8 +7,6 @@ from .location_rules import LocationRule
 from .location_states import LocationState
 from .sim_time import SimTime
 from ...utils import abstract_class_property
-
-__all__ = ['Location', 'LocationError', 'LocationSummary']
 
 
 class LocationError(Exception):

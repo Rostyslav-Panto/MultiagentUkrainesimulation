@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
@@ -12,7 +11,6 @@ from .pandemic_types import NoOP
 from .regulation import PandemicRegulation
 from .sim_time import SimTime
 
-__all__ = ['Person', 'PersonState']
 
 
 @dataclass

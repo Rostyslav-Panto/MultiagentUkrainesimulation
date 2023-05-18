@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from dataclasses import dataclass
 from typing import Sequence, Type, cast, Optional
 
@@ -9,7 +8,6 @@ from .infection_model import InfectionSummary, sorted_infection_summary
 from .location_states import NonEssentialBusinessLocationState
 from .sim_state import PandemicSimState
 
-__all__ = ['PandemicObservation']
 
 
 @dataclass

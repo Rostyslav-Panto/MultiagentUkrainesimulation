@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 import os
 import subprocess

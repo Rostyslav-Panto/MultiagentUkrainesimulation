@@ -1,5 +1,4 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
-# flake8: noqa
+
 from typing import Optional
 
 import numpy as np

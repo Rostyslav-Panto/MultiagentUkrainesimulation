@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Dict
@@ -7,7 +6,6 @@ from .pandemic_testing_result import PandemicTestResult
 from .infection_model import InfectionSummary
 from .person import PersonState
 
-__all__ = ['PandemicTesting', 'GlobalTestingState']
 
 
 @dataclass

@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 import dataclasses
 import os
 from pathlib import Path
@@ -8,10 +7,6 @@ from .experiments import experiment_main
 from .sim_configs import small_town_config, medium_town_config, above_medium_town_config
 from ..data import H5DataSaver, StageSchedule
 from ..environment import PandemicSimOpts, PandemicSimConfig, PandemicRegulation, Risk
-
-__all__ = ['EvaluationOpts', 'evaluate_strategies', 'evaluate_spread_rates', 'evaluate_location_contact_rates',
-           'evaluate_population_sizes', 'evaluate_social_gatherings', 'evaluate_testing_rates',
-           'population_size_to_config']
 
 population_size_to_config: Dict[int, PandemicSimConfig] = {pp.num_persons: pp for pp in [
     small_town_config,

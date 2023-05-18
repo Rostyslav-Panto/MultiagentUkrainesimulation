@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from collections import defaultdict, OrderedDict
 from itertools import product as cartesianproduct, combinations
@@ -18,8 +17,6 @@ from .make_population import make_population
 from .pandemic_testing_strategies import RandomPandemicTesting
 from .simulator_config import PandemicSimConfig
 from .simulator_opts import PandemicSimOpts
-
-__all__ = ['PandemicSim', 'make_locations']
 
 
 def make_locations(sim_config: PandemicSimConfig) -> List[Location]:

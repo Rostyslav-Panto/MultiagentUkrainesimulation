@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 import string
 from inspect import ismethod
 from typing import List, Any, Dict, Optional, Sequence, Type
@@ -12,9 +11,6 @@ from matplotlib.ticker import MaxNLocator
 from .evaluation_plots import inf_colors
 from .pandemic_viz import PandemicViz
 from ..environment import PandemicObservation, InfectionSummary, PandemicSimState, PandemicSimConfig
-
-__all__ = ['BaseMatplotLibViz', 'SimViz', 'GymViz', 'PlotType']
-
 
 class PlotType:
     global_infection_summary: str = 'gis'

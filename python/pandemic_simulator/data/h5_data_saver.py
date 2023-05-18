@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 import time
 from pathlib import Path
@@ -11,7 +10,6 @@ from .interfaces import ExperimentDataSaver
 from ..environment import PandemicObservation
 from ..utils import shallow_asdict
 
-__all__ = ['H5DataSaver']
 
 
 class H5DataSaver(ExperimentDataSaver):

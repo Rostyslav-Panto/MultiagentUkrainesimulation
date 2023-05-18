@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from collections import defaultdict
 from dataclasses import dataclass
@@ -10,9 +9,6 @@ from scipy.stats import truncnorm
 
 from ..interfaces import IndividualInfectionState, InfectionModel, InfectionSummary, Risk, globals
 from ...utils import required
-
-__all__ = ['SEIRInfectionState', 'SEIRModel', 'SpreadProbabilityParams']
-
 
 class _SEIRLabel(Enum):
     susceptible = 'susceptible'

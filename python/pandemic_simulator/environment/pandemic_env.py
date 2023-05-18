@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import List, Optional, Dict, Tuple, Mapping, Type, Sequence
 
 import gym
@@ -10,8 +9,6 @@ from .pandemic_sim import PandemicSim
 from .reward import RewardFunction, SumReward, RewardFunctionFactory, RewardFunctionType
 from .simulator_config import PandemicSimConfig
 from .simulator_opts import PandemicSimOpts
-
-__all__ = ['PandemicGymEnv']
 
 
 class PandemicGymEnv(gym.Env):

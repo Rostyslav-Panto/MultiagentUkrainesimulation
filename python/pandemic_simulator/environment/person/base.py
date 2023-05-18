@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 import dataclasses
 from copy import deepcopy
 from typing import Optional, List, Sequence, cast
@@ -8,8 +7,6 @@ import numpy as np
 from ..interfaces import Person, PersonID, PersonState, LocationID, Risk, Registry, PandemicRegulation, \
     SimTime, NoOP, NOOP, SimTimeTuple, PandemicTestResult, ContactTracer, globals
 from ..location import Cemetery, Hospital
-
-__all__ = ['BasePerson']
 
 
 class BasePerson(Person):

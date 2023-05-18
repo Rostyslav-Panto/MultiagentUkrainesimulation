@@ -1,10 +1,7 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from dataclasses import dataclass
 
 from ..interfaces import NonEssentialBusinessLocationState, ContactRate, SimTimeTuple, AgeRestrictedBusinessBaseLocation
-
-__all__ = ['Office', 'OfficeState']
 
 
 @dataclass

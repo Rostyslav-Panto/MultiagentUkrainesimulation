@@ -1,12 +1,9 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from dataclasses import dataclass, field
 from typing import Set, cast
 
 from .utils import get_work_time_for_24_7_open_locations
 from ..interfaces import PersonID, InfectionSummary, BusinessLocationState, SimTimeTuple, BusinessBaseLocation
-
-__all__ = ['Hospital', 'HospitalState']
 
 
 @dataclass

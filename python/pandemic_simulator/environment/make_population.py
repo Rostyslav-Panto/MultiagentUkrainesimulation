@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import List, cast
 from uuid import uuid4
 
@@ -10,8 +9,6 @@ from .location import Home, School
 from .person import Retired, Worker, Minor
 from .simulator_config import PandemicSimConfig
 from ..utils import cluster_into_random_sized_groups
-
-__all__ = ['make_population']
 
 age_group = range(2, 101)
 

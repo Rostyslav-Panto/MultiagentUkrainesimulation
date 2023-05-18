@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from abc import ABC, abstractmethod
 from typing import Mapping
@@ -8,8 +7,7 @@ from orderedset import OrderedSet
 
 from .ids import PersonID
 
-__all__ = ['ContactTracer']
-
+_
 
 class ContactTracer(ABC):
     """An interface for contact tracing apps."""

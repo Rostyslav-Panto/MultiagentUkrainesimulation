@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 import dataclasses
 from typing import Dict, List, Optional, cast, Set, Type, Mapping, Tuple, Union
 
@@ -9,8 +8,6 @@ from .interfaces import LocationID, Location, PersonID, Person, Registry, Regist
     LocationState
 from pandemic_simulator.environment.interfaces.location_base_business import BusinessBaseLocation
 from .location.cemetery import Cemetery
-
-__all__ = ['CityRegistry']
 
 
 class CityRegistry(Registry):

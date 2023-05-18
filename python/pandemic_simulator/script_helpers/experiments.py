@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from typing import List, Optional, Sequence, Union
 
@@ -10,8 +9,6 @@ from ..data.interfaces import ExperimentDataSaver, StageSchedule
 from ..environment import PandemicSimOpts, PandemicSimConfig, NoPandemicDone, PandemicRegulation, init_globals, \
     PandemicGymEnv
 from ..utils import shallow_asdict
-
-__all__ = ['experiment_main', 'seeded_experiment_main']
 
 
 def seeded_experiment_main(exp_id: int,

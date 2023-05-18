@@ -1,10 +1,7 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from dataclasses import dataclass
 
 from ..interfaces import LocationState, ContactRate, SimTime, SimTimeTuple, LocationRule, globals, BaseLocation
-
-__all__ = ['Home', 'HomeState']
 
 
 @dataclass

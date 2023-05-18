@@ -1,12 +1,9 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from abc import ABC
 from typing import Any, Optional, Union
 
 import numpy as np
 
 from ...environment import PandemicObservation
-
-__all__ = ['ExperimentDataSaver']
 
 
 class ExperimentDataSaver(ABC):

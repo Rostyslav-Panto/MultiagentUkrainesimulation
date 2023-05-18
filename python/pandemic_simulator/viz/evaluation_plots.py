@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import Optional, Sequence, List, Tuple, Union
 
 import numpy as np
@@ -8,10 +7,6 @@ from mpl_toolkits.mplot3d import Axes3D
 
 from ..data import ExperimentResult, StageSchedule
 from ..environment import sorted_infection_summary, InfectionSummary
-
-__all__ = ['plot_cumulative_reward', 'plot_critical_summary', 'plot_global_infection_summary',
-           'plot_multi_params_summary', 'plot_deaths_per_day_summary', 'get_stage_strategy',
-           'plot_annotate_stages', 'inf_colors']
 
 critical_index = sorted_infection_summary.index(InfectionSummary.CRITICAL)
 infection_index = sorted_infection_summary.index(InfectionSummary.INFECTED)

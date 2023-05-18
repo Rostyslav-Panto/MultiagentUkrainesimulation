@@ -1,9 +1,6 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import List
 
 from ..environment import PandemicRegulation, DEFAULT, Risk, Office, School, HairSalon, RetailStore, Restaurant, Bar
-
-__all__ = ['austin_regulations', 'italian_regulations', 'swedish_regulations']
 
 austin_regulations: List[PandemicRegulation] = [
     PandemicRegulation(stay_home_if_sick=False,

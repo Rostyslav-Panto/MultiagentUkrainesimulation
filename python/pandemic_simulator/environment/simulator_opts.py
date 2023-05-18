@@ -1,7 +1,4 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from dataclasses import dataclass
-
-__all__ = ['PandemicSimOpts']
 
 
 @dataclass(frozen=True)

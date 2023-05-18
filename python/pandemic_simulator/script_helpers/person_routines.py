@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 """This helper module contains a few standard routines for persons in the simulator."""
 
@@ -7,8 +6,6 @@ from typing import Sequence, Type
 from ..environment import LocationID, PersonRoutine, HairSalon, Restaurant, Bar, \
     GroceryStore, RetailStore, triggered_routine, weekend_routine, social_routine, mid_day_during_week_routine, \
     PersonRoutineAssignment, Person, Retired, Minor, Worker, Location
-
-__all__ = ['DefaultPersonRoutineAssignment']
 
 """
 References:

@@ -1,12 +1,9 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import cast
 
 import numpy as np
 
 from ..interfaces import PersonState, InfectionSummary, IndividualInfectionState, PandemicTestResult, PandemicTesting, \
     globals
-
-__all__ = ['RandomPandemicTesting']
 
 
 class RandomPandemicTesting(PandemicTesting):

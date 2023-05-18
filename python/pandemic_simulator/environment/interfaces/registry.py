@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from abc import ABC, abstractmethod
 from typing import List, Optional, Set, Mapping, Tuple, Union
@@ -10,7 +9,6 @@ from .pandemic_testing_result import PandemicTestResult
 from .person import Person
 from .sim_time import SimTimeTuple, SimTime
 
-__all__ = ['Registry', 'RegistrationError']
 
 
 class RegistrationError(Exception):

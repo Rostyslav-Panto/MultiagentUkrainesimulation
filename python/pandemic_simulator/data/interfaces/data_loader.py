@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 import dataclasses
 from abc import ABC
@@ -7,9 +6,6 @@ from typing import List, Optional, Sequence
 import numpy as np
 
 from ...environment import PandemicObservation, PandemicSimOpts
-
-__all__ = ['ExperimentResult', 'ExperimentDataLoader', 'StageSchedule']
-
 
 @dataclasses.dataclass(frozen=True)
 class StageSchedule:

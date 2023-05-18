@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import List, Any
 
 import networkx
@@ -7,8 +6,6 @@ from matplotlib import pyplot as plt
 from .pandemic_viz import PandemicViz
 from ..environment import PandemicObservation, PandemicSimState, PandemicSim
 from ..utils import checked_cast
-
-__all__ = ['GraphViz']
 
 
 class GraphViz(PandemicViz):

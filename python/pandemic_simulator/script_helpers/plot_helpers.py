@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 import os
 import string
 import warnings
@@ -14,8 +13,6 @@ from .sim_configs import small_town_config
 from ..data import H5DataLoader, ExperimentResult
 from ..environment import sorted_infection_summary, PandemicSimConfig
 from ..viz import plot_global_infection_summary, plot_critical_summary, plot_multi_params_summary
-
-__all__ = ['make_evaluation_plots_from_data', 'make_evaluation_plots']
 
 
 def make_evaluation_plots_from_data(data: Sequence[ExperimentResult],

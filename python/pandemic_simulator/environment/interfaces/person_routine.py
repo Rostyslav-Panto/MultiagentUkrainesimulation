@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 import enum
 from abc import ABCMeta, abstractmethod
 from dataclasses import dataclass
@@ -9,8 +8,6 @@ from .location import Location
 from .person import Person, PersonState
 from .sim_time import SimTimeInterval, SimTimeTuple, SimTime
 
-__all__ = ['PersonRoutine', 'SpecialEndLoc', 'PersonRoutineWithStatus', 'PersonRoutineAssignment',
-           'RoutineTrigger', 'SimTimeRoutineTrigger']
 
 
 class SpecialEndLoc(enum.Enum):

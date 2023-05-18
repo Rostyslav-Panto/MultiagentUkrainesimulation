@@ -1,11 +1,8 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from dataclasses import dataclass
 from typing import cast
 
 from ..interfaces import LocationRule, LocationState, PersonID, ContactRate, DEFAULT, SimTimeTuple, BaseLocation
-
-__all__ = ['Cemetery', 'CemeteryRule', 'CemeteryState']
 
 
 @dataclass(frozen=True)

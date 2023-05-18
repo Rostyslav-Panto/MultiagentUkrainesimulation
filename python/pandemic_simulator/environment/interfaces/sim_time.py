@@ -1,8 +1,5 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from dataclasses import dataclass, field
 from typing import List, Tuple, Optional, Type, Union
-
-__all__ = ['SimTime', 'SimTimeInterval', 'SimTimeTuple']
 
 
 @dataclass(frozen=True)

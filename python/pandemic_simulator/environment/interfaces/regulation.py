@@ -1,11 +1,9 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Dict, Any, Optional, Union, List, Type
 
 from .pandemic_types import Default
 
-__all__ = ['PandemicRegulation']
 
 from .infection_model import Risk
 

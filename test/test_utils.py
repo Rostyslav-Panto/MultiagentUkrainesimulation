@@ -1,4 +1,3 @@
-# Confidential, Copyright 2021, Sony Corporation of America, All rights reserved.
 import itertools
 
 import pytest

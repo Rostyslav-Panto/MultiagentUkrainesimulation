@@ -1,12 +1,9 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import Optional, Sequence, List
 
 from .base import BasePerson
 from .routine_utils import execute_routines
 from ..interfaces import PersonRoutineWithStatus, PersonState, LocationID, SimTime, NoOP, SimTimeTuple, \
     NOOP, PersonRoutine, ContactTracer, PersonID
-
-__all__ = ['Minor']
 
 
 class Minor(BasePerson):

@@ -1,11 +1,9 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from enum import Enum
 from typing import Optional
 
-__all__ = ['IndividualInfectionState', 'InfectionModel', 'InfectionSummary', 'Risk', 'sorted_infection_summary']
 
 
 class InfectionSummary(Enum):

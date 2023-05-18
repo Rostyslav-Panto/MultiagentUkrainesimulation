@@ -1,13 +1,9 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 import enum
 from abc import ABCMeta, abstractmethod
 from typing import Dict, List, Type, Union, Any
 
 import numpy as np
-
-__all__ = ['DoneFunctionType', 'DoneFunctionFactory', 'ORDone', 'DoneFunction',
-           'InfectionSummaryAboveThresholdDone', 'NoMoreInfectionsDone', 'NoPandemicDone']
 
 from .interfaces import PandemicObservation, InfectionSummary, sorted_infection_summary
 

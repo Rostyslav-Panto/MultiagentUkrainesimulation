@@ -1,4 +1,3 @@
-# Confidential, Copyright 2021, Sony Corporation of America, All rights reserved.
 from typing import Optional
 
 import pandemic_simulator as ps

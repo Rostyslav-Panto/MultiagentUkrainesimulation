@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 
 from dataclasses import dataclass, field
@@ -9,8 +8,6 @@ from orderedset import OrderedSet
 from .ids import PersonID
 from .sim_time import SimTimeTuple
 
-__all__ = ['LocationState', 'ContactRate', 'NonEssentialBusinessLocationState',
-           'BusinessLocationState']
 
 
 @dataclass(frozen=True)

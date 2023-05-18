@@ -1,12 +1,9 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 import dataclasses
 from dataclasses import dataclass, field
 from typing import Sequence, Type, Any, Dict, Optional
 
 from .interfaces import BaseLocation, PersonRoutineAssignment
 from .location import Hospital, HospitalState
-
-__all__ = ['LocationConfig', 'PandemicSimConfig']
 
 
 @dataclass

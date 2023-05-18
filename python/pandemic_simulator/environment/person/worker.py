@@ -1,4 +1,3 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import Optional, Sequence, List
 
 from .base import BasePerson
@@ -6,7 +5,6 @@ from .routine_utils import execute_routines
 from ..interfaces import PersonState, LocationID, SimTime, NoOP, SimTimeTuple, NOOP, PersonRoutine, \
     ContactTracer, PersonID, PersonRoutineWithStatus
 
-__all__ = ['Worker']
 
 
 class Worker(BasePerson):

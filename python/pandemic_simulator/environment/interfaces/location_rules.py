@@ -1,12 +1,9 @@
-# Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 import dataclasses
 from typing import Union, Optional, Type
 
 from .location_states import ContactRate
 from .pandemic_types import Default, DEFAULT
 from .sim_time import SimTimeTuple
-
-__all__ = ['LocationRule', 'BusinessLocationRule', 'NonEssentialBusinessLocationRule']
 
 
 @dataclasses.dataclass(frozen=True)

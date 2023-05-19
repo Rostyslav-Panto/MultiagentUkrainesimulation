@@ -23,14 +23,6 @@ def abstract_class_property() -> _T:
     return cast(_T, inner)
 
 
-def checked_cast(type: Type[_T], obj: Any) -> _T:
-    """
-    Method for executing a safe cast in python
-    """
-    assert istype.isinstanceof(obj, type)
-    return obj  # type: ignore
-
-
 def shallow_asdict(x: Any) -> Dict[str, Any]:
     assert dataclasses.is_dataclass(x)
     return {field.name: getattr(x, field.name) for field in dataclasses.fields(x)}

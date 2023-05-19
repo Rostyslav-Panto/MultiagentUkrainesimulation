@@ -7,7 +7,6 @@ from orderedset import OrderedSet
 
 from .ids import PersonID
 
-_
 
 class ContactTracer(ABC):
     """An interface for contact tracing apps."""

@@ -1,5 +1,5 @@
 """This script plots the household family distribution in homes. This script should help tune
-pandemic_simulator.environment.make_population.make_population method of the simulator.
+multiagentsimulator.environment.make_population.make_population method of the simulator.
 
 The overview of home assignment to be followed is as follows:
 
@@ -20,7 +20,7 @@ Note: There are unittests that check the household distribution under test/envir
 import numpy as np
 from matplotlib import pyplot as plt
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 
 def plot_household_distribution() -> None:

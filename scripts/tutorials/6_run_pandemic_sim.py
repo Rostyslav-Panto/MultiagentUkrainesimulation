@@ -1,7 +1,7 @@
 
 from tqdm import trange
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 
 def run_pandemic_sim() -> None:
@@ -18,8 +18,8 @@ def run_pandemic_sim() -> None:
     # make sim
     sim = ps.env.PandemicSim.from_config(sim_config)
 
-    # setup viz to show plots
-    viz = ps.viz.SimViz.from_config(sim_config)
+    # setup visualization to show plots
+    viz = ps.visualization.SimViz.from_config(sim_config)
 
     # impose a regulation
     sim.impose_regulation(regulation=ps.sh.austin_regulations[0])  # stage 0

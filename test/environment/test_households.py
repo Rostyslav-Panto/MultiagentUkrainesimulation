@@ -1,6 +1,6 @@
 import numpy as np
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 
 def test_family_households() -> None:

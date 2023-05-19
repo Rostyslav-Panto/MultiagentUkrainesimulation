@@ -1,7 +1,7 @@
 
 from tqdm import trange
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 
 def simple_worker_loop() -> None:

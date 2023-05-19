@@ -1,7 +1,7 @@
 
 from tqdm import trange
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 
 def impose_regulations() -> None:
@@ -14,7 +14,7 @@ def impose_regulations() -> None:
     # these parameters are shared across the entire repo
     ps.init_globals(seed=0)
 
-    # generate a simulator config (see `python/pandemic_simulator/script_helpers/sim_configs.py` for more configs)
+    # generate a simulator config (see `python/multiagentsimulator/script_helpers/sim_configs.py` for more configs)
     sim_config = ps.env.PandemicSimConfig(
         num_persons=10,
         location_configs=[
@@ -27,8 +27,8 @@ def impose_regulations() -> None:
     # init simulator
     sim = ps.env.PandemicSim.from_config(sim_config)
 
-    # setup viz to show plots
-    viz = ps.viz.SimViz.from_config(sim_config)
+    # setup visualization to show plots
+    viz = ps.visualization.SimViz.from_config(sim_config)
 
     # define two custom pandemic regulations (see ps.sh.austin_regulations for realistic regulations)
     regulation_1 = ps.env.PandemicRegulation(  # moderate restriction
@@ -64,7 +64,7 @@ def impose_regulations() -> None:
         viz.record(sim.state)
 
     # display plots to show grocery store (visitor visits)
-    viz.plot([ps.viz.PlotType.global_infection_summary, ps.viz.PlotType.stages])
+    viz.plot([ps.visualization.PlotType.global_infection_summary, ps.visualization.PlotType.stages])
 
 
 if __name__ == '__main__':

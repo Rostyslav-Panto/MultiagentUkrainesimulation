@@ -2,8 +2,8 @@ from typing import Sequence, Type
 
 from tqdm import trange
 
-import pandemic_simulator as ps
-from pandemic_simulator.environment import Person, Location
+import multiagentsimulator as ps
+from multiagentsimulator.environment import Person, Location
 
 
 def using_person_routine_assignment() -> None:
@@ -56,7 +56,7 @@ def using_person_routine_assignment() -> None:
                     ]
                     p.set_outside_work_routines(routines)  # set as a outside work routine
 
-    # generate a simulator config (see `python/pandemic_simulator/script_helpers/sim_configs.py` for more configs)
+    # generate a simulator config (see `python/multiagentsimulator/script_helpers/sim_configs.py` for more configs)
     sim_config = ps.env.PandemicSimConfig(
         num_persons=20,
         location_configs=[
@@ -71,8 +71,8 @@ def using_person_routine_assignment() -> None:
     # Init simulator by passing the person routine assignment instance
     sim = ps.env.PandemicSim.from_config(sim_config)
 
-    # setup viz to show plots
-    viz = ps.viz.SimViz.from_config(sim_config)
+    # setup visualization to show plots
+    viz = ps.visualization.SimViz.from_config(sim_config)
 
     # Iterate by advancing in days by calling step_day in the simulator
     for _ in trange(20, desc='Simulating day'):
@@ -80,9 +80,9 @@ def using_person_routine_assignment() -> None:
         viz.record(sim.state)
 
     # display plots to show grocery store (visitor visits)
-    viz.plot([ps.viz.PlotType.global_infection_summary,
-              ps.viz.PlotType.location_assignee_visits,
-              ps.viz.PlotType.location_visitor_visits])
+    viz.plot([ps.visualization.PlotType.global_infection_summary,
+              ps.visualization.PlotType.location_assignee_visits,
+              ps.visualization.PlotType.location_visitor_visits])
 
 
 if __name__ == '__main__':

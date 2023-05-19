@@ -1,8 +1,8 @@
 
 from matplotlib import pyplot as plt
 
-from pandemic_simulator.environment import PandemicRegulation, PandemicSimOpts
-from pandemic_simulator.script_helpers import EvaluationOpts, evaluate_strategies, make_evaluation_plots
+from multiagentsimulator.environment import PandemicRegulation, PandemicSimOpts
+from multiagentsimulator.script_helpers import EvaluationOpts, evaluate_strategies, make_evaluation_plots
 
 if __name__ == '__main__':
     regulations = [
@@ -11,19 +11,19 @@ if __name__ == '__main__':
         PandemicRegulation(stay_home_if_sick=True, quarantine_if_contact_positive=True, stage=2)
     ]
     name_to_strategy_sim_opt = {
-        'NONE': (0, PandemicSimOpts()),
-        'SICK': (1, PandemicSimOpts()),
-        'CON-2': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=2)),
-        'CON-5': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=5)),
-        'CON-10': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=10)),
-        'SICK+': (1, PandemicSimOpts(spontaneous_testing_rate=0.3)),
-        'CON-2+': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=2,
-                                      spontaneous_testing_rate=0.3)),
-        'CON-5+': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=5,
-                                      spontaneous_testing_rate=0.3)),
+        # 'NONE': (0, PandemicSimOpts()),
+        # 'SICK': (1, PandemicSimOpts()),
+        # 'CON-2': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=2)),
+        # 'CON-5': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=5)),
+        # 'CON-10': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=10)),
+        # 'SICK+': (1, PandemicSimOpts(spontaneous_testing_rate=0.3)),
+        # 'CON-2+': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=2,
+        #                               spontaneous_testing_rate=0.3)),
+        # 'CON-5+': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=5,
+        #                               spontaneous_testing_rate=0.3)),
         'CON-10+': (2, PandemicSimOpts(use_contact_tracer=True, contact_tracer_history_size=10,
                                        spontaneous_testing_rate=0.3)),
-        'SICK++': (1, PandemicSimOpts(spontaneous_testing_rate=1.)),
+        # 'SICK++': (1, PandemicSimOpts(spontaneous_testing_rate=1.)),
     }
 
     param_labels, strategies, sim_opts = zip(*[(k, v[0], v[1]) for k, v in name_to_strategy_sim_opt.items()])
@@ -33,8 +33,6 @@ if __name__ == '__main__':
         strategies=strategies,
         pandemic_regulations=regulations,
         sim_opts=sim_opts,  # type: ignore
-        max_episode_length=10,
-        enable_warm_up=False
     )
 
     experiment_name = 'contact_tracing'

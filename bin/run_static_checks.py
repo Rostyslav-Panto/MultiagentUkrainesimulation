@@ -15,7 +15,7 @@ def mypy() -> int:
     root_path = Path(__file__).resolve().parents[1]
     paths = [
         Path('bin'),
-        Path('python/pandemic_simulator'),
+        Path('python/multiagentsimulator'),
         Path('scripts/tutorials'),
         Path('scripts/simulator_experiments'),
         Path('scripts/calibration'),

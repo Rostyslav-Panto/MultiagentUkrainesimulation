@@ -51,7 +51,7 @@ foo@Foo:~/PandemicSimulator$ python3 -m pip install -e .
 ```python
 from tqdm import trange
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 # the first thing to do at the start of any experiment is to initialize a few global parameters
 ps.init_globals() # you can pass parameters, like a random seed, that are shared across the entire repo.
@@ -83,7 +83,7 @@ See `scripts/tutorials/` for in-depth tutorials on how to use the simulator.
 `/docs` -- API documentation plus hierarchy. Build it locally by calling `make html` inside docs folder. Requires 
 sphinx autodoc package. Installation instructions: https://www.sphinx-doc.org/en/master/usage/installation.html
 
-`/python/pandemic_simulator/` -- Source files
+`/python/multiagentsimulator/` -- Source files
 
 `/scripts` -- Tutorials, calibration-scripts and evaluation scripts
 

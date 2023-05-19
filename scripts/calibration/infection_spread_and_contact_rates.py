@@ -14,7 +14,7 @@ import numpy as np
 from pandas import read_csv
 from tqdm import trange
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 SEED = 30
 MAX_EVAL_TRIALS_TO_VALID = 5

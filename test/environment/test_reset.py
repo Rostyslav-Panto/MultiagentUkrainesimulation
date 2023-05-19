@@ -1,6 +1,6 @@
 import copy
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 
 def test_location_and_person_reset() -> None:

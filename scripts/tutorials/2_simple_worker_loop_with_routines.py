@@ -1,7 +1,7 @@
 
 from tqdm import trange
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 
 def simple_worker_loop_with_routines() -> None:
@@ -72,8 +72,8 @@ def simple_worker_loop_with_routines() -> None:
     # Init simulator
     sim = ps.env.PandemicSim(locations=[work, home, restaurant, store], persons=[person])
 
-    # setup viz to show plots
-    viz = ps.viz.SimViz(num_persons=1)
+    # setup visualization to show plots
+    viz = ps.visualization.SimViz(num_persons=1)
 
     # Iterate by advancing in days by calling step_day in the simulator
     for _ in trange(10, desc='Simulating day'):
@@ -81,7 +81,7 @@ def simple_worker_loop_with_routines() -> None:
         viz.record(sim.state)
 
     # show plot
-    viz.plot([ps.viz.PlotType.location_assignee_visits, ps.viz.PlotType.location_visitor_visits])
+    viz.plot([ps.visualization.PlotType.location_assignee_visits, ps.visualization.PlotType.location_visitor_visits])
 
 
 if __name__ == '__main__':

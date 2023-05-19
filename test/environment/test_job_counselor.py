@@ -1,5 +1,5 @@
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 
 def test_job_counselor() -> None:

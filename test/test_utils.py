@@ -2,7 +2,7 @@ import itertools
 
 import pytest
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 
 @pytest.mark.parametrize(['x', 'n'],

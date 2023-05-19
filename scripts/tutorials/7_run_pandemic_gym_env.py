@@ -1,7 +1,7 @@
 
 from tqdm import trange
 
-import pandemic_simulator as ps
+import multiagentsimulator as ps
 
 
 def run_pandemic_gym_env() -> None:
@@ -19,8 +19,8 @@ def run_pandemic_gym_env() -> None:
     # make env
     env = ps.env.PandemicGymEnv.from_config(sim_config, pandemic_regulations=ps.sh.austin_regulations)
 
-    # setup viz
-    viz = ps.viz.GymViz.from_config(sim_config=sim_config)
+    # setup visualization
+    viz = ps.visualization.GymViz.from_config(sim_config=sim_config)
 
     # run stage-0 action steps in the environment
     env.reset()

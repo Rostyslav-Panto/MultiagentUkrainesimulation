@@ -3,7 +3,7 @@ import numpy as np
 import pytest
 from orderedset import OrderedSet
 
-from pandemic_simulator.environment import MaxSlotContactTracer, PersonID
+from multiagentsimulator.environment import MaxSlotContactTracer, PersonID
 
 
 @pytest.fixture

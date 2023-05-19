@@ -1,7 +1,7 @@
 from typing import Optional
 
-import pandemic_simulator as ps
-from pandemic_simulator.environment import SimTime, PersonState
+import multiagentsimulator as ps
+from multiagentsimulator.environment import SimTime, PersonState
 
 
 def test_person_routine_with_status_sim_time_trigger() -> None:

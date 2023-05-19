@@ -2,7 +2,7 @@
 from . import data
 from . import environment
 from . import script_helpers
-from . import viz
+from . import visualization
 from . import utils
 
 env = environment

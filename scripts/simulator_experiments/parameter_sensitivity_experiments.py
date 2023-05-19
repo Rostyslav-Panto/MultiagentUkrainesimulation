@@ -2,12 +2,12 @@
 from matplotlib import pyplot as plt
 
 from multiagentsimulator.data import H5DataLoader
-from multiagentsimulator.script_helpers import EvaluationOpts, evaluate_spread_rates, \
+from multiagentsimulator.script_helpers import EvaluationSettings, evaluate_spread_rates, \
     make_evaluation_plots, evaluate_location_contact_rates, evaluate_social_gatherings, \
     make_evaluation_plots_from_data
 
 if __name__ == '__main__':
-    opts = EvaluationOpts(
+    opts = EvaluationSettings(
         num_seeds=30,
         spread_rates=(0.01, 0.02, 0.03),
         social_distancing=(0., 0.3, 0.6),

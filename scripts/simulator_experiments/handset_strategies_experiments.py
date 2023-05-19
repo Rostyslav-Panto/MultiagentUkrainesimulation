@@ -2,7 +2,7 @@
 from matplotlib import pyplot as plt
 
 from multiagentsimulator.data import StageSchedule, H5DataLoader
-from multiagentsimulator.script_helpers import EvaluationOpts, evaluate_strategies, make_evaluation_plots_from_data
+from multiagentsimulator.script_helpers import EvaluationSettings, evaluate_strategies, make_evaluation_plots_from_data
 
 if __name__ == '__main__':
     name_to_strategy = {
@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     param_labels, strategies = zip(*[(k, v) for k, v in name_to_strategy.items()])
 
-    opts = EvaluationOpts(
+    opts = EvaluationSettings(
         num_seeds=30,
         strategies=strategies,
         max_episode_length=120,

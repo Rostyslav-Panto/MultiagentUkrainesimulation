@@ -4,11 +4,11 @@ from matplotlib import pyplot as plt
 import multiagentsimulator as ps
 
 
-def eval_government_strategies(experiment_name: str, opts: ps.sh.EvaluationOpts) -> None:
+def eval_government_strategies(experiment_name: str, opts: ps.sh.EvaluationSettings) -> None:
     data_saver = ps.data.H5DataSaver(experiment_name, path=opts.data_saver_path)
     print('Running Swedish strategy')
     ps.sh.experiment_main(sim_config=opts.default_sim_config,
-                          sim_opts=ps.env.PandemicSimOpts(),
+                          sim_opts=ps.env.SimulationSettings(),
                           data_saver=data_saver,
                           pandemic_regulations=ps.sh.swedish_regulations,
                           stages_to_execute=swedish_strategy,
@@ -18,7 +18,7 @@ def eval_government_strategies(experiment_name: str, opts: ps.sh.EvaluationOpts)
 
     print('Running Italian strategy')
     ps.sh.experiment_main(sim_config=opts.default_sim_config,
-                          sim_opts=ps.env.PandemicSimOpts(),
+                          sim_opts=ps.env.SimulationSettings(),
                           data_saver=data_saver,
                           pandemic_regulations=ps.sh.italian_regulations,
                           stages_to_execute=italian_strategy,
@@ -38,7 +38,7 @@ if __name__ == '__main__':
                         ps.data.StageSchedule(stage=3, end_day=79),
                         ps.data.StageSchedule(stage=2, end_day=None)]
 
-    opts = ps.sh.EvaluationOpts(
+    opts = ps.sh.EvaluationSettings(
         num_seeds=30,
         max_episode_length=180,
         enable_warm_up=False

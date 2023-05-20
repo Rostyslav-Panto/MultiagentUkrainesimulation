@@ -1,31 +1,32 @@
+import geopandas
 import folium
-import geopandas as geopandas
-import geodatasets
-chicago = geopandas.read_file(geodatasets.get_path("geoda.chicago_commpop"))
-groceries = geopandas.read_file(geodatasets.get_path("geoda.groceries")).explode(ignore_index=True)
-m = chicago.explore(
-    column="POP2010",  # make choropleth based on "POP2010" column
-    scheme="naturalbreaks",  # use mapclassify's natural breaks scheme
-    legend=True,  # show legend
-    k=10,  # use 10 bins
-    tooltip=False,  # hide tooltip
-    popup=["POP2010", "POP2000"],  # show popup (on-click)
-    legend_kwds=dict(colorbar=False),  # do not use colorbar
-    name="chicago",  # name of the layer in the map
-)
+from folium import Circle
 
-groceries.explore(
-    m=m,  # pass the map object
-    color="red",  # use red color on all points
-    marker_kwds=dict(radius=5, fill=True),  # make marker radius 10px with fill
-    tooltip="Address",  # show "name" column in the tooltip
-    tooltip_kwds=dict(labels=False),  # do not show column label in the tooltip
-    name="groceries",  # name of the layer in the map
-)
+from multiagentsimulator.data.city_buildings.city import City
 
-folium.TileLayer("Stamen Toner", show=False).add_to(
-    m
-)  # use folium to add alternative tiles
-folium.LayerControl().add_to(m)  # use folium to add layer control
-
-m  # show map
+city = City(distance=2000)
+city_map = city.get_map()
+city_buildings = city.get_classified_buildings_in_distance()
+colors = ['red', 'blue', 'green', 'purple', 'orange', 'darkred',"grey"]
+locs_map = []
+for name, buildings, color in zip(
+        city_buildings.keys(),
+        city_buildings.values(),
+        colors):
+    print(f"{name}:", len(buildings))
+    for _, r in buildings.iterrows():
+        sim_geo = geopandas.GeoSeries(r["geometry"])
+        geo_j = sim_geo.to_json()
+        geo_j = folium.GeoJson(
+            name=name,
+            data=geo_j,
+            style_function=lambda feature, col=color: {'fillColor': col,
+                                            'color': col,
+                                            'fillOpacity': 0.5,
+                                            },
+        marker=Circle(radius=0))
+        locs_map.append(geo_j)
+for i in locs_map:
+    i.add_to(city_map)
+# folium.(city_map)
+city_map.show_in_browser()

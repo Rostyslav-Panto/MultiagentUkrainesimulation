@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from ..interfaces import NonEssentialBusinessLocationState, ContactRate, SimulationTimeTuple, NoImportantBusinessBaseLocation
+from ..interfaces import NonEssentialBusinessLocationState, ContactRate, SimulationTimeTuple, UnnecessaryBusinessBaseLocation
 
 @dataclass
 class SchoolState(NonEssentialBusinessLocationState):
@@ -8,7 +8,7 @@ class SchoolState(NonEssentialBusinessLocationState):
     open_time: SimulationTimeTuple = SimulationTimeTuple(hours=tuple(range(7, 15)), week_days=tuple(range(0, 5)))
 
 
-class School(NoImportantBusinessBaseLocation[SchoolState]):
+class School(UnnecessaryBusinessBaseLocation[SchoolState]):
     """Implements a simple school"""
 
     state_type = SchoolState

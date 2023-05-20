@@ -2,7 +2,7 @@
 from matplotlib import pyplot as plt
 
 from multiagentsimulator.data import H5DataLoader
-from multiagentsimulator.script_helpers import EvaluationSettings, evaluate_spread_rates, \
+from multiagentsimulator.configs import EvaluationSettings, evaluate_spread_rates, \
     make_evaluation_plots, evaluate_location_contact_rates, evaluate_social_gatherings, \
     make_evaluation_plots_from_data
 

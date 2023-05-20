@@ -1,27 +1,16 @@
 from dataclasses import dataclass
 
 from ..interfaces import BusinessLocationState, ContactRate, SimulationTimeTuple, NonEssentialBusinessLocationState, \
-    ImportantBusinessBaseLocation, NoImportantBusinessBaseLocation
+    NecessaryBusinessBaseLocation, UnnecessaryBusinessBaseLocation
 
 @dataclass
-class GroceryStoreState(BusinessLocationState):
+class StoreState(BusinessLocationState):
     contact_rate: ContactRate = ContactRate(0, 1, 0, 0.2, 0.25, 0.3)
     open_time: SimulationTimeTuple = SimulationTimeTuple(hours=tuple(range(7, 21)), week_days=tuple(range(0, 6)))
 
 
-class GroceryStore(ImportantBusinessBaseLocation[GroceryStoreState]):
+class Store(NecessaryBusinessBaseLocation[StoreState]):
     """Implements a grocery store location."""
 
-    state_type = GroceryStoreState
+    state_type = StoreState
 
-
-@dataclass
-class RetailStoreState(NonEssentialBusinessLocationState):
-    contact_rate: ContactRate = ContactRate(0, 1, 0, 0.2, 0.25, 0.3)
-    open_time: SimulationTimeTuple = SimulationTimeTuple(hours=tuple(range(7, 21)), week_days=tuple(range(0, 6)))
-
-
-class RetailStore(NoImportantBusinessBaseLocation[RetailStoreState]):
-    """Implements a retail store location."""
-
-    state_type = RetailStoreState

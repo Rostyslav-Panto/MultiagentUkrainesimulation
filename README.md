@@ -15,7 +15,7 @@ COVID-19 pandemic.
 At a high level, the simulator currently models: 
   - a population with a realistic age distribution, where each person has a 
     distinct pre-defined programmable stochastic (or deterministic) behavior routine 
-  - several heterogeneous locations like schools, homes, stores, bars, restaurants, etc., with 
+  - several heterogeneous locations like schools, homes, stores, restaurants, etc., with 
     different characteristics, such as open times, capacity, contact rates, etc. 
   - testing with false positive/negative rates 
   - imperfect public adherence to social distancing measures

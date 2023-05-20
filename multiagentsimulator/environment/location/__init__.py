@@ -1,6 +1,6 @@
 
 from .cemetery import *
-from .hair_salon import *
+from .university import *
 from .home import *
 from .hospital import *
 from .office import *

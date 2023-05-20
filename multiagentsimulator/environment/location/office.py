@@ -13,4 +13,4 @@ class OfficeState(NonEssentialBusinessLocationState):
 class Office(AgeRestrictedBusinessBaseLocation[OfficeState]):
     """Implements an office"""
     state_type = OfficeState
-    age_limits = (18, 110)
+    age_limit = (18, 110)

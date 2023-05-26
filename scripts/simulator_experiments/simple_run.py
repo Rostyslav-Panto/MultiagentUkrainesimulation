@@ -1,31 +1,24 @@
 from tqdm import trange
 
-import multiagentsimulator as ps
+import multiagentsimulator as ms
 
 
 def run_pandemic_sim() -> None:
+    ms.init_globals(seed=1)
+    sim_config = ms.sh.kyiv_config
 
-    # init globals
-    ps.init_globals(seed=1)
+    sim = ms.env.Simulator.from_config(sim_config, map_on=True)
 
-    # select a simulator config
-    sim_config = ps.sh.kyiv_config
+    viz = ms.visualization.MapViz(
+        locations=sim.locations,
+        city=sim_config.city,
+    )
 
-    # make sim
-    sim = ps.env.Simulator.from_config(sim_config)
-
-    # setup viz to show plots
-    viz = ps.visualization.SimViz.from_config(sim_config)
-
-    # impose a regulation
-    sim.impose_regulation(regulation=ps.sh.austin_regulations[0])  # stage 0
-
-    # run regulation steps in the simulator
-    for _ in trange(100, desc='Simulating day'):
+    sim.impose_regulation(regulation=ms.sh.ukraine_regulations[0])  # stage 0
+    for _ in trange(10, desc='Simulating day'):
         sim.step_day()
-        viz.record(sim.state)
+        viz.record_state(sim.state)
 
-    # generate plots
     viz.plot()
 
 

@@ -4,10 +4,6 @@ import multiagentsimulator as ps
 
 
 def run_pandemic_gym_env() -> None:
-    """Here we execute the gym envrionment wrapped simulator using austin regulations,
-    a small town config and default person routines."""
-
-    print('\nA tutorial that runs the OpenAI Gym environment wrapped simulator', flush=True)
 
     # init globals
     ps.init_globals(seed=0)
@@ -16,7 +12,7 @@ def run_pandemic_gym_env() -> None:
     sim_config = ps.sh.small_town_config
 
     # make env
-    env = ps.env.GymEnvironment.from_config(sim_config, pandemic_regulations=ps.sh.austin_regulations)
+    env = ps.env.GymEnvironment.from_config(sim_config, pandemic_regulations=ps.sh.ukraine_regulations)
 
     # setup viz
     viz = ps.visualization.GymViz.from_config(sim_config=sim_config)
@@ -24,10 +20,9 @@ def run_pandemic_gym_env() -> None:
     # run stage-0 action steps in the environment
     env.reset()
     for _ in trange(100, desc='Simulating day'):
-        obs, reward, done, aux = env.step(action=0)  # here the action is the discrete regulation stage identifier
+        obs, reward, done, aux = env.step(action=0)
         viz.record((obs, reward))
 
-    # generate plots
     viz.plot()
 
 

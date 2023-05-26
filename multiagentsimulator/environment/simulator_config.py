@@ -1,6 +1,8 @@
 import dataclasses
 from dataclasses import dataclass, field
-from typing import Sequence, Type, Any, Dict, Optional
+from typing import Sequence, Type, Any, Dict, Optional, List
+
+from geopandas import GeoDataFrame
 
 from .interfaces import BaseLocation, PersonRoutineAssignment
 from .location import Hospital, HospitalState
@@ -16,6 +18,8 @@ class LocationConfigs:
 
     num_assignees: int = -1
     """Number of assignees assigned to that location (used by JobCounselor)"""
+
+    positions: GeoDataFrame = field(default_factory=list)
 
     state_opts: Dict[str, Any] = field(default_factory=dict)
     """Additional options passed to the initial state."""

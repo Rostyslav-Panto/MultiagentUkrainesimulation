@@ -30,7 +30,7 @@ class Student(BasePerson):
         :param regulation_compliance_prob: probability of complying to a regulation
         :param init_state: Optional initial state of the person
         """
-        assert person_id.age <= 18, "A minor's age should be <= 18"
+        assert 18 < person_id.age <= 21, "A student's age should be <= 21"
         self._university = university
         self._university_time = university_time or SimulationTimeTuple(hours=tuple(range(9, 15)), week_days=tuple(range(0, 5)))
         self._routines = []
@@ -42,7 +42,7 @@ class Student(BasePerson):
                          init_state=init_state)
 
     @property
-    def school(self) -> Optional[LocationID]:
+    def university(self) -> Optional[LocationID]:
         return self._university
 
     @property
@@ -53,9 +53,9 @@ class Student(BasePerson):
             return self._home, self._university
 
     @property
-    def at_school(self) -> bool:
+    def at_university(self) -> bool:
         """Return True if the person is at school and False otherwise"""
-        return self.school is not None and self._state.current_location == self.school
+        return self.university is not None and self._state.current_location == self.university
 
     def set_outside_school_routines(self, routines: Sequence[PersonRoutine]) -> None:
         """A sequence of person routines to run outside school time"""
@@ -75,17 +75,14 @@ class Student(BasePerson):
         if step_ret != NOOP:
             return step_ret
 
-        if self.school is not None and sim_time in self._university_time:
-            # school time - go to school
-            if not self.at_school and self.enter_location(self.school):
+        if self.university is not None and sim_time in self._university_time:
+            if not self.at_university and self.enter_location(self.university):
                 return None
         else:
-            # execute outside school routines
             ret = execute_routines(person=self, routines_with_status=self._outside_university_rs)
             if ret != NOOP:
                 return ret
 
-            # if not at home go home
             if not self.at_home:
                 self.enter_location(self.home)
                 return None

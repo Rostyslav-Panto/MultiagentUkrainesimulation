@@ -19,18 +19,26 @@ from .simulator_config import SimulationConfigs
 from .simulator_settings import SimulationSettings
 
 
-def make_locations(sim_config: SimulationConfigs) -> List[Location]:
+def generate_locations(sim_config: SimulationConfigs) -> List[Location]:
     return [config.location_type(loc_id=f'{config.location_type.__name__}_{i}',
                                  init_state=config.location_type.state_type(**config.state_opts),
                                  **config.extra_opts)  # type: ignore
             for config in sim_config.location_configs for i in range(config.num)]
 
 
+def generate_map_locations(sim_config: SimulationConfigs) -> List[Location]:
+    return [config.location_type(loc_id=f'{config.location_type.__name__}_{i}',
+                                 init_state=config.location_type.state_type(**config.state_opts),
+                                 position=position[1]["geometry"],
+                                 **config.extra_opts)  # type: ignore
+            for config in sim_config.location_configs for i, position in zip(range(config.num), config.positions.iterrows())]
+
+
 class Simulator:
     """Class that implements the pandemic simulator."""
 
     _id_to_person: Dict[PersonID, Person]
-    _id_to_location: Dict[LocationID, Location]
+    id_to_location: Dict[LocationID, Location]
     _infection_model: InfectionModel
     _pandemic_testing: PandemicTesting
     _registry: Registry
@@ -40,9 +48,10 @@ class Simulator:
     _infection_threshold: int
     _numpy_rng: np.random.RandomState
 
-    _type_to_locations: DefaultDict
+    type_to_locations: DefaultDict
     _hospital_ids: List[LocationID]
-    _persons: Sequence[Person]
+    persons: Sequence[Person]
+    locations: Sequence[Location]
     _state: SimulationState
 
     def __init__(self,
@@ -72,8 +81,8 @@ class Simulator:
         self._registry = globals.registry
         self._numpy_rng = globals.numpy_rng
 
-        self._id_to_location = OrderedDict({loc.id: loc for loc in locations})
-        assert self._registry.location_ids.issuperset(self._id_to_location)
+        self.id_to_location = OrderedDict({loc.id: loc for loc in locations})
+        assert self._registry.location_ids.issuperset(self.id_to_location)
         self._id_to_person = OrderedDict({p.id: p for p in persons})
         assert self._registry.person_ids.issuperset(self._id_to_person)
 
@@ -84,12 +93,13 @@ class Simulator:
         self._infection_update_interval = infection_update_interval
         self._infection_threshold = infection_threshold
 
-        self._type_to_locations = defaultdict(list)
+        self.type_to_locations = defaultdict(list)
         for loc in locations:
-            self._type_to_locations[type(loc)].append(loc)
+            self.type_to_locations[type(loc)].append(loc)
         self._hospital_ids = [loc.id for loc in locations if isinstance(loc, Hospital)]
 
-        self._persons = persons
+        self.persons = persons
+        self.locations = locations
 
         # assign routines
         if person_routine_assignment is not None:
@@ -115,7 +125,8 @@ class Simulator:
     @classmethod
     def from_config(cls: Type['Simulator'],
                     sim_config: SimulationConfigs,
-                    sim_opts: SimulationSettings = SimulationSettings()) -> 'Simulator':
+                    sim_opts: SimulationSettings = SimulationSettings(),
+                    map_on=False) -> 'Simulator':
         """
         Creates an instance using config
 
@@ -125,18 +136,17 @@ class Simulator:
         """
         assert globals.registry, 'No registry found. Create the repo wide registry first by calling init_globals()'
 
-        # make locations
-        locations = make_locations(sim_config)
+        if map_on:
+            locations = generate_map_locations(sim_config)
+        else:
+            locations = generate_locations(sim_config)
 
-        # make population
         persons = generate_population(sim_config)
 
-        # make infection model
         infection_model = SEIRModel(
             spread_probability_params=SpreadProbabilityParams(sim_opts.infection_spread_rate_mean,
                                                               sim_opts.infection_spread_rate_sigma))
 
-        # setup pandemic testing
         pandemic_testing = RandomPandemicTesting(spontaneous_testing_rate=sim_opts.random_testing_rate,
                                                  symp_testing_rate=sim_opts.symp_testing_rate,
                                                  critical_testing_rate=sim_opts.critical_testing_rate,
@@ -144,11 +154,9 @@ class Simulator:
                                                  testing_false_negative_rate=sim_opts.testing_false_negative_rate,
                                                  retest_rate=sim_opts.retest_rate)
 
-        # create contact tracing app (optional)
         contact_tracer = MaxSlotContactTracer(
             storage_slots=sim_opts.contact_tracer_history_size) if sim_opts.use_contact_tracer else None
 
-        # setup sim
         return Simulator(persons=persons,
                          locations=locations,
                          infection_model=infection_model,
@@ -261,16 +269,16 @@ class Simulator:
     def step(self) -> None:
         """Method that advances one step through the simulator"""
         # sync all locations
-        for location in self._id_to_location.values():
+        for location in self.id_to_location.values():
             location.sync(self._state.sim_time)
         self._registry.update_location_specific_information()
 
         # call person steps (randomize order)
-        for i in self._numpy_rng.randint(0, len(self._persons), len(self._persons)):
-            self._persons[i].step(self._state.sim_time, self._contact_tracer)
+        for i in self._numpy_rng.randint(0, len(self.persons), len(self.persons)):
+            self.persons[i].step(self._state.sim_time, self._contact_tracer)
 
         # update person contacts
-        for location in self._id_to_location.values():
+        for location in self.id_to_location.values():
             contacts = self._compute_contacts(location)
 
             if self._contact_tracer:
@@ -348,7 +356,7 @@ class Simulator:
         sd = regulation.social_distancing
         loc_type_rk = regulation.location_type_to_rule_kwargs
 
-        for loc_type, locations in self._type_to_locations.items():
+        for loc_type, locations in self.type_to_locations.items():
             rule_kwargs = {}
             if loc_type_rk is not None and loc_type in loc_type_rk:
                 rule_kwargs.update(loc_type_rk[loc_type])
@@ -379,7 +387,7 @@ class Simulator:
         return self._state
 
     def reset(self) -> None:
-        for location in self._id_to_location.values():
+        for location in self.id_to_location.values():
             location.reset()
         for person in self._id_to_person.values():
             person.reset()
@@ -389,8 +397,8 @@ class Simulator:
         num_persons = len(self._id_to_person)
         self._state = SimulationState(
             id_to_person_state={person_id: person.state for person_id, person in self._id_to_person.items()},
-            id_to_location_state={loc_id: loc.state for loc_id, loc in self._id_to_location.items()},
-            location_type_infection_summary={type(location): 0 for location in self._id_to_location.values()},
+            id_to_location_state={loc_id: loc.state for loc_id, loc in self.id_to_location.items()},
+            location_type_infection_summary={type(location): 0 for location in self.id_to_location.values()},
 
             global_infection_summary={s: 0 for s in sorted_infection_summary},
             global_location_summary=self._registry.global_location_summary,

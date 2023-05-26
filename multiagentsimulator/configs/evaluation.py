@@ -4,14 +4,14 @@ from pathlib import Path
 from typing import Dict, Optional, Sequence, Union, List
 
 from .experiments import experiment_main
-from .sim_configs import small_town_config, medium_town_config, above_medium_town_config
+from .sim_configs import small_town_config, medium_town_config, kyiv_config
 from ..data import H5DataSaver, StageSchedule
 from ..environment import SimulationSettings, SimulationConfigs, ChosenRegulation, Risk
 
 population_size_to_config: Dict[int, SimulationConfigs] = {pp.num_persons: pp for pp in [
     small_town_config,
     medium_town_config,
-    above_medium_town_config]}
+    kyiv_config]}
 
 
 @dataclasses.dataclass

@@ -10,5 +10,5 @@ class UniversityState(NonEssentialBusinessLocationState):
 
 
 class University(UnnecessaryBusinessBaseLocation[UniversityState]):
-    """Implements a hair salon."""
+    """Implements a university"""
     state_type = UniversityState

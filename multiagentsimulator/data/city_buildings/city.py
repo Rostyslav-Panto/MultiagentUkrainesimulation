@@ -1,6 +1,7 @@
 import osmnx as ox
 from folium import folium
 
+from shapely.geometry import Point
 
 class City:
     def __init__(
@@ -19,12 +20,20 @@ class City:
             tags={'building': True},
             dist=self.distance
         )
-        # all_buildings = all_buildings.loc['relation']
+        all_buildings = all_buildings[~all_buildings['geometry'].apply(lambda geom: isinstance(geom, Point))]
         classified_building = {
-            "University": all_buildings[all_buildings['building'].isin(['university', 'college','collage'])],
-            "Office": all_buildings[all_buildings['building'].isin(['office'])],
-            "Restaurant": all_buildings[all_buildings['building'].isin(['commercial'])],
-            "School": all_buildings[all_buildings['building'].isin(['school'])],
+            "University": all_buildings[
+                all_buildings['building'].isin(['university', 'college', 'collage'])
+            ],
+            "Office": all_buildings[
+                all_buildings['building'].isin(['office'])
+            ],
+            "Restaurant": all_buildings[
+                all_buildings['building'].isin(['commercial'])
+            ],
+            "School": all_buildings[
+                all_buildings['building'].isin(['school'])
+            ],
             "Hospital": all_buildings[all_buildings['building'].isin(['hospital', 'clinic'])],
             "Store": all_buildings[all_buildings['building'].isin(['supermarket','shop','mall'])],
             "Home":all_buildings[all_buildings['building'].isin([

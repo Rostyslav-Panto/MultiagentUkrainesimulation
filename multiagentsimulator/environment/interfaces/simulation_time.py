@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from datetime import date, datetime
 from typing import List, Tuple, Optional, Type, Union
 
 
@@ -54,6 +55,8 @@ class SimulationTime:
     def __add__(self, other: Union['SimulationTime', 'SimulationTimeInterval']) -> 'SimulationTime':
         return SimulationTime.from_hours(other.in_hours() + self.in_hours())
 
+    def __str__(self):
+        return str(datetime(year=self.year+2023, month=1, day=self.day, hour=self.hour))
 
 @dataclass(frozen=True)
 class SimulationTimeInterval:

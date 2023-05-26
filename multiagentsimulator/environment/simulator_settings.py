@@ -5,10 +5,10 @@ from dataclasses import dataclass
 class SimulationSettings:
     """Parameter options passed to the simulator."""
 
-    infection_spread_rate_mean: float = 0.021
+    infection_spread_rate_mean: float = 0.21
     """Mean for the bounded-gaussian infection spread rate distribution"""
 
-    infection_spread_rate_sigma: float = 0.01
+    infection_spread_rate_sigma: float = 0.1
     """Std for the bounded-gaussian infection spread rate distribution"""
 
     random_testing_rate: float = 0.02
@@ -35,8 +35,8 @@ class SimulationSettings:
     use_contact_tracer: bool = False
     """Set to true to use contact tracer in the simulator"""
 
-    contact_tracer_history_size: int = 5
+    contact_tracer_history_size: int = 15
     """Contact tracer history size. Only used if use_contact_tracer is True."""
 
-    infection_threshold: int = 10
+    infection_threshold: int = 50
     """A threshold used by """

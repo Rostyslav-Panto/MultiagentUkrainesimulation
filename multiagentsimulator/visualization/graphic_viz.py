@@ -210,7 +210,7 @@ class SimViz(BaseMatplotLibViz):
             lv = self._loc_assignee_visits[-1][0]
             x = np.arange(lv.shape[0])
             p = []
-            colors = ['g', 'r', 'b']
+            colors = ['g', 'r', 'b','y']
             bottom = np.zeros(lv.shape[0])
             for j in range(lv.shape[1] - 1, -1, -1):
                 p.append(ax.bar(x, lv[:, j], color=colors[j], alpha=0.5, bottom=bottom))
@@ -228,7 +228,7 @@ class SimViz(BaseMatplotLibViz):
             lv = self._loc_visitor_visits[-1][0]
             x = np.arange(lv.shape[0])
             p = []
-            colors = ['g', 'r', 'b']
+            colors = ['g', 'r', 'b', 'y']
             bottom = np.zeros(lv.shape[0])
             for j in range(lv.shape[1] - 1, -1, -1):
                 p.append(ax.bar(x, lv[:, j], color=colors[j], alpha=0.5, bottom=bottom))

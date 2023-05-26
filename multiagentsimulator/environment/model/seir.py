@@ -25,54 +25,54 @@ class _SEIRLabel(Enum):
 
 class _AgeLimit(Enum):
     _4 = 4
-    _17 = 17
-    _49 = 49
-    _64 = 64
-    _200 = 200
+    _18 = 18
+    _45 = 45
+    _60 = 60
+    _150 = 150
 
 
 _DEFAULT_HOSP_RATE_SYMP = {
     (_AgeLimit._4, Risk.LOW): 0.0279,
-    (_AgeLimit._17, Risk.LOW): 0.0215,
-    (_AgeLimit._49, Risk.LOW): 1.3215,
-    (_AgeLimit._64, Risk.LOW): 2.8563,
-    (_AgeLimit._200, Risk.LOW): 3.3873,
+    (_AgeLimit._18, Risk.LOW): 0.0215,
+    (_AgeLimit._45, Risk.LOW): 1.3215,
+    (_AgeLimit._60, Risk.LOW): 2.8563,
+    (_AgeLimit._150, Risk.LOW): 3.3873,
     (_AgeLimit._4, Risk.HIGH): 0.2791,
-    (_AgeLimit._17, Risk.HIGH): 0.2146,
-    (_AgeLimit._49, Risk.HIGH): 13.2154,
-    (_AgeLimit._64, Risk.HIGH): 28.5634,
-    (_AgeLimit._200, Risk.HIGH): 33.8733,
+    (_AgeLimit._18, Risk.HIGH): 0.2146,
+    (_AgeLimit._45, Risk.HIGH): 13.2154,
+    (_AgeLimit._60, Risk.HIGH): 28.5634,
+    (_AgeLimit._150, Risk.HIGH): 33.8733,
 }
 
 _DEFAULT_DEATH_RATE_NEEDS_HOSP = {
     (_AgeLimit._4, Risk.LOW): 0.2390,
-    (_AgeLimit._17, Risk.LOW): 0.3208,
-    (_AgeLimit._49, Risk.LOW): 0.2304,
-    (_AgeLimit._64, Risk.LOW): 0.3049,
-    (_AgeLimit._200, Risk.LOW): 0.4269,
+    (_AgeLimit._18, Risk.LOW): 0.3208,
+    (_AgeLimit._45, Risk.LOW): 0.2304,
+    (_AgeLimit._60, Risk.LOW): 0.3049,
+    (_AgeLimit._150, Risk.LOW): 0.4269,
     (_AgeLimit._4, Risk.HIGH): 0.2390,
-    (_AgeLimit._17, Risk.HIGH): 0.3208,
-    (_AgeLimit._49, Risk.HIGH): 0.2304,
-    (_AgeLimit._64, Risk.HIGH): 0.3049,
-    (_AgeLimit._200, Risk.HIGH): 0.4269,
+    (_AgeLimit._18, Risk.HIGH): 0.3208,
+    (_AgeLimit._45, Risk.HIGH): 0.2304,
+    (_AgeLimit._60, Risk.HIGH): 0.3049,
+    (_AgeLimit._150, Risk.HIGH): 0.4269,
 }
 
 _DEFAULT_DEATH_RATE_HOSP = {
     (_AgeLimit._4, Risk.LOW): 0.0390,
-    (_AgeLimit._17, Risk.LOW): 0.1208,
-    (_AgeLimit._49, Risk.LOW): 0.0304,
-    (_AgeLimit._64, Risk.LOW): 0.1049,
-    (_AgeLimit._200, Risk.LOW): 0.2269,
+    (_AgeLimit._18, Risk.LOW): 0.1208,
+    (_AgeLimit._45, Risk.LOW): 0.0304,
+    (_AgeLimit._60, Risk.LOW): 0.1049,
+    (_AgeLimit._150, Risk.LOW): 0.2269,
     (_AgeLimit._4, Risk.HIGH): 0.0390,
-    (_AgeLimit._17, Risk.HIGH): 0.1208,
-    (_AgeLimit._49, Risk.HIGH): 0.0304,
-    (_AgeLimit._64, Risk.HIGH): 0.1049,
-    (_AgeLimit._200, Risk.HIGH): 0.2269,
+    (_AgeLimit._18, Risk.HIGH): 0.1208,
+    (_AgeLimit._45, Risk.HIGH): 0.0304,
+    (_AgeLimit._60, Risk.HIGH): 0.1049,
+    (_AgeLimit._150, Risk.HIGH): 0.2269,
 }
 
 
 def _get_age_limit_from_age(age: int) -> _AgeLimit:
-    value = _AgeLimit._200
+    value = _AgeLimit._150
 
     for a in _AgeLimit:
         if age <= a.value:
@@ -91,8 +91,8 @@ class SEIRInfectionState(IndividualInfectionState):
 @dataclass(frozen=True)
 class SpreadProbabilityParams:
     """Parameters for individual spread probabilities."""
-    mean: float = 0.03
-    sigma: float = 0.03
+    mean: float = 0.9
+    sigma: float = 0.9
 
 
 _TransitionProbability = Dict[_SEIRLabel, float]
@@ -137,7 +137,7 @@ class SEIRModel(InfectionModel):
                  from_needs_hosp_to_death_rate: float = 0.3,
                  from_hosp_to_death_rate: Optional[float] = None,
                  spread_probability_params: Optional[SpreadProbabilityParams] = None,
-                 pandemic_start_limit: int = 5):
+                 pandemic_start_limit: int = 1000):
         self._numpy_rng = globals.numpy_rng
         assert self._numpy_rng, 'No numpy rng found. Either pass a rng or set the default repo wide rng.'
 

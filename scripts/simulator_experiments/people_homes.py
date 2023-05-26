@@ -10,7 +10,7 @@ def plot_household_distribution() -> None:
     cr = ps.environment.interfaces.globals.registry
     assert cr
 
-    ps.env.make_locations(config)
+    ps.env.generate_locations(config)
     ps.env.generate_population(config)
 
     retiree_homes_list = []
@@ -64,7 +64,7 @@ def plot_household_distribution() -> None:
     plt.subplot(n_rows, n_cols, plt_i)
     plt.bar(x, minor_homes.sum(axis=0), color=colors, alpha=0.5, width=0.3)
     plot_percent(minor_homes.sum(axis=0))
-    plt.xticks(x, ['minors', 'adults', 'retirees'], fontsize=8)
+    plt.xticks(x, ['minors/students', 'adults', 'retirees'], fontsize=8)
     plt.title(f'{len(minor_homes)} Homes with children')
     plt.ylim(ylims)
 
@@ -72,7 +72,7 @@ def plot_household_distribution() -> None:
     plt.subplot(n_rows, n_cols, plt_i)
     plt.bar(x, adult_homes.sum(axis=0), color=colors, alpha=0.5, width=0.3)
     plot_percent(adult_homes.sum(axis=0))
-    plt.xticks(x, ['minors', 'adults', 'retirees'], fontsize=8)
+    plt.xticks(x, ['minors/students', 'adults', 'retirees'], fontsize=8)
     plt.title(f'{len(adult_homes)} Homes with adults\n(no children)')
     plt.ylim(ylims)
 
@@ -85,7 +85,7 @@ def plot_household_distribution() -> None:
              f'{retirees_in_nursing / config.num_persons * 100: 0.2f}% (total-person)\n'
              f'{retirees_in_nursing / all_retirees * 100: 0.2f}% (total-retirees)',
              ha="right", color=colors[2])
-    plt.xticks(x, ['minors', 'adults', 'retirees'], fontsize=8)
+    plt.xticks(x, ['minors/students', 'adults', 'retirees'], fontsize=8)
     plt.title(f'{len(retiree_homes)} Homes with only retirees')
     plt.ylim(ylims)
 

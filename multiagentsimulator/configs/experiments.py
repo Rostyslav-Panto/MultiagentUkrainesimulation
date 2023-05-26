@@ -4,7 +4,7 @@ from typing import List, Optional, Sequence, Union
 import numpy as np
 from tqdm import trange
 
-from .covid_regulations import austin_regulations
+from .covid_regulations import ukraine_regulations
 from ..data.interfaces import ExperimentDataSaver, StageSchedule
 from ..environment import SimulationSettings, SimulationConfigs, NoPandemicDone, ChosenRegulation, init_globals, \
     GymEnvironment
@@ -24,7 +24,7 @@ def seeded_experiment_main(exp_id: int,
     init_globals(seed=random_seed)
     env = GymEnvironment.from_config(sim_config=sim_config,
                                      sim_opts=sim_opts,
-                                     pandemic_regulations=pandemic_regulations or austin_regulations,
+                                     pandemic_regulations=pandemic_regulations or ukraine_regulations,
                                      done_fn=NoPandemicDone(30))
     env.reset()
 

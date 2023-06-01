@@ -1,5 +1,4 @@
 
-"""This helper module contains a few standard routines for persons in the simulator."""
 
 from typing import Sequence, Type
 
@@ -7,15 +6,8 @@ from ..environment import LocationID, PersonRoutine, University, Restaurant, \
     Store, triggered_routine, weekend_routine, social_routine, mid_day_during_week_routine, \
     PersonRoutineAssignment, Person, Retired, Child, Adult, Location
 
-"""
-References:
-https://www.touchbistro.com/blog/how-diners-choose-restaurants/
-
-"""
-
 
 class DefaultPersonRoutineAssignment(PersonRoutineAssignment):
-    """A default person routine assignment"""
 
     @property
     def required_location_types(self) -> Sequence[Type[Location]]:

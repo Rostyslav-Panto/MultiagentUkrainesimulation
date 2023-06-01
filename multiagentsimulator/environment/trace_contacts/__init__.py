@@ -1,2 +1,2 @@
 
-from .max_slot_contact_tracer import *
+from .contacts_tracer import *

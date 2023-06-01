@@ -9,7 +9,6 @@ class SimulationStateConsumer(ABC):
 
     @abstractmethod
     def consume_begin(self, sim_state: SimulationState) -> None:
-        """Begin the consumer. For example, the start of each episode"""
         pass
 
     @abstractmethod
@@ -18,19 +17,11 @@ class SimulationStateConsumer(ABC):
 
     @abstractmethod
     def finalize(self, *args: Any, **kwargs: Any) -> Any:
-        """
-        Performs any final operations (if needed). For example, finalize and return a metric.
 
-        :param args: Any args for finalizing the consumer
-        :param kwargs: Any kwargs for finalizing the consumer
-        :return: Any value returned after finalizing
-        """
         pass
 
     @abstractmethod
     def reset(self) -> None:
-        """Reset consumer"""
-
+        pass
     def close(self) -> None:
-        """Performs any closing operation. For example, saves and closes file objects etc."""
         pass

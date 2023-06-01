@@ -92,7 +92,7 @@ class MapViz:
                             fillColor=persons_colors[person[1].summary],
                             fill=True,
                         ).add_to(persons_layer)
-                print(location.id.name, [(i.x, i.y) for i in points])
+                # print(location.id.name, [(i.x, i.y) for i in points])
 
             persons_layer.add_to(self._map)
 

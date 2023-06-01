@@ -14,16 +14,12 @@ class WorkPackage:
     work_time: SimulationTimeTuple
 
 
-class JobCounselor:
-    """Generates vacant work ids for working persons."""
+class JobRecruiter:
 
     _all_work_ids_vacant_pos: List[Tuple[List[LocationID], int]]
     _numpy_rng: np.random.RandomState
 
     def __init__(self, location_configs: Sequence[LocationConfigs]):
-        """
-        :param location_configs: A sequence of LocationConfigs
-        """
         assert globals.registry, 'No registry found. Create the repo wide registry first by calling init_globals()'
         self._registry = globals.registry
         self._numpy_rng = globals.numpy_rng

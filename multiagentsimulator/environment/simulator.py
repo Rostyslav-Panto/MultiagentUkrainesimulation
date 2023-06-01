@@ -64,19 +64,6 @@ class Simulator:
                  infection_update_interval: SimulationTimeInterval = SimulationTimeInterval(day=1),
                  person_routine_assignment: Optional[PersonRoutineAssignment] = None,
                  infection_threshold: int = 0):
-        """
-        :param locations: A sequence of Location instances.
-        :param persons: A sequence of Person instances.
-        :param infection_model: Infection model instance, if None SEIR default infection model is used.
-        :param pandemic_testing: PandemicTesting instance, if None RandomPandemicTesting default instance is used.
-        :param contact_tracer: Optional ContactTracer instance.
-        :param new_time_slot_interval: interval for updating contact tracer if that is not None. Default is set daily.
-        :param infection_update_interval: interval for updating infection states. Default is set once daily.
-        :param person_routine_assignment: An optional PersonRoutineAssignment instance that assign PersonRoutines to
-            each person
-        :param infection_threshold: If the infection summary is greater than the specified threshold, a
-            boolean in PandemicSimState is set to True.
-        """
         assert globals.registry, 'No registry found. Create the repo wide registry first by calling init_globals()'
         self._registry = globals.registry
         self._numpy_rng = globals.numpy_rng
@@ -127,13 +114,6 @@ class Simulator:
                     sim_config: SimulationConfigs,
                     sim_opts: SimulationSettings = SimulationSettings(),
                     map_on=False) -> 'Simulator':
-        """
-        Creates an instance using config
-
-        :param sim_config: Simulator config
-        :param sim_opts: Simulator opts
-        :return: PandemicSim instance
-        """
         assert globals.registry, 'No registry found. Create the repo wide registry first by calling init_globals()'
 
         if map_on:
@@ -167,7 +147,6 @@ class Simulator:
 
     @property
     def registry(self) -> Registry:
-        """Return registry"""
         return self._registry
 
     def _compute_contacts(self, location: Location) -> OrderedSet:
@@ -267,7 +246,6 @@ class Simulator:
             self._state.global_testing_state.num_tests += 1  # update number of tests
 
     def step(self) -> None:
-        """Method that advances one step through the simulator"""
         # sync all locations
         for location in self.id_to_location.values():
             location.sync(self._state.sim_time)
@@ -295,7 +273,6 @@ class Simulator:
                                                                           person.id.age,
                                                                           person.state.risk,
                                                                           1 - person.state.not_infection_probability)
-
                 if person.state.infection_state.exposed_rnb != -1.:
                     for vals in person.state.not_infection_probability_history:
                         if person.state.infection_state.exposed_rnb < 1 - vals[1]:
@@ -347,12 +324,6 @@ class Simulator:
         return new_cr
 
     def impose_regulation(self, regulation: ChosenRegulation) -> None:
-        """
-        Receive a regulation that updates the simulator dynamics
-
-        :param regulation: a PandemicRegulation instance
-        """
-        # update location rules
         sd = regulation.social_distancing
         loc_type_rk = regulation.location_type_to_rule_kwargs
 

@@ -26,7 +26,6 @@ class SimulationTime:
         return ret_list
 
     def step(self) -> None:
-        """Increments time by one discrete step"""
         h, w, d, y = self.now('hwdy')
         h += 1
         if h >= 24:
@@ -60,23 +59,16 @@ class SimulationTime:
 
 @dataclass(frozen=True)
 class SimulationTimeInterval:
-    """Interval specified in hours/week_day/day/year"""
 
     hour: int = 0
-    """Set a value in [0, 23] to indicate an interval in hours."""
 
     day: int = 0
-    """Set a value in [0, 365] to indicate an interval in days"""
 
     year: int = 0
-    """Set a value in >0 to indicate an interval in years"""
 
     offset_hour: int = 0
-    """An offset in hours [0, 23]. Example - day = 1 and offset_hour = 12 would trigger at Noon everyday."""
 
     offset_day: int = 0
-    """An offset in days [0, 365]. Example - day = 3 and offset_day = 1 would trigger once in 3 days starting a day
-        later."""
 
     _trigger_hr: int = field(init=False)
     _offset_hr: int = field(init=False)
@@ -89,7 +81,6 @@ class SimulationTimeInterval:
         object.__setattr__(self, '_offset_hr', self.offset_day * 24 + self.offset_hour)
 
     def trigger_at_interval(self, sim_time: SimulationTime) -> bool:
-        """Return True at sim time interval and False otherwise."""
         sim_hr = sim_time.year * 365 * 24 + sim_time.day * 24 + sim_time.hour
         return (sim_hr - self._offset_hr) % self._trigger_hr == 0 if sim_hr >= self._offset_hr else False
 

@@ -8,7 +8,6 @@ from ..interfaces import LocationID, SimulationTime, NoOP, NOOP, PersonState, Pe
 
 
 class Retired(BasePerson):
-    """Class that implements a retired person"""
 
     _routines: List[PersonRoutine]
     _routines_with_status: List[PersonRoutineWithStatus]
@@ -18,12 +17,7 @@ class Retired(BasePerson):
                  home: LocationID,
                  regulation_compliance_prob: float = 1.0,
                  init_state: Optional[PersonState] = None):
-        """
-        :param person_id: PersonID instance
-        :param home: Home location id
-        :param regulation_compliance_prob: probability of complying to a regulation
-        :param init_state: Optional initial state of the person
-        """
+
         self._routines = []
         self._routines_with_status = []
 
@@ -39,7 +33,6 @@ class Retired(BasePerson):
             rws.sync(sim_time=sim_time, person_state=self.state)
 
     def set_routines(self, routines: Sequence[PersonRoutine]) -> None:
-        """A sequence of person routines to execute"""
         for routine in routines:
             if routine not in self._routines:
                 self._routines.append(routine)

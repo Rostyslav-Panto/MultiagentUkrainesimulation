@@ -5,7 +5,7 @@ from .trace_contacts import *
 from .finish import *
 from .model import *
 from .interfaces import *
-from .job_counselor import *
+from .job_recruiter import *
 from .location import *
 from .generate_population import *
 from .simulation_environment import *

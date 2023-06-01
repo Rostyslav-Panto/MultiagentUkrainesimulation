@@ -10,7 +10,6 @@ from ..location import Cemetery, Hospital
 
 
 class BasePerson(Person):
-    """Class that partially implements a sim person. """
 
     _id: PersonID
     _home: LocationID
@@ -31,12 +30,7 @@ class BasePerson(Person):
                  home: LocationID,
                  regulation_compliance_prob: float = 1.0,
                  init_state: Optional[PersonState] = None):
-        """
-        :param person_id: PersonID instance
-        :param home: Home location id
-        :param regulation_compliance_prob: probability of complying to a regulation
-        :param init_state: Optional initial state of the person
-        """
+
         assert globals.registry, 'No registry found. Create the repo wide registry first by calling init_globals()'
         self._registry = globals.registry
         self._numpy_rng = globals.numpy_rng
@@ -77,7 +71,6 @@ class BasePerson(Person):
 
     @property
     def at_home(self) -> bool:
-        """Return True if the person is at home and False otherwise"""
         return self._state.current_location == self.home
 
     @property
@@ -85,7 +78,6 @@ class BasePerson(Person):
         return self._home,
 
     def _sync(self, sim_time: SimulationTime) -> None:
-        """Sync sim time specific variables."""
         if (self._state.current_location not in self.assigned_locations and
                 self._registry.is_location_open_for_visitors(self._state.current_location, sim_time)):
             self._go_home = True

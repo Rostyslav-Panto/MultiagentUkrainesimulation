@@ -14,16 +14,11 @@ from ..environment import SimulationSettings
 
 
 class H5DataLoader(ExperimentDataLoader):
-    """Implement a H5 experiment data loader"""
 
     _filename: Path
     _pandemic_sim_opts_field_names: Set[str]
 
     def __init__(self, filename: str, path: Path = Path(''), ) -> None:
-        """
-        :param filename: filename
-        :param path: path to store the h5 dataset
-        """
         self._filename = path / filename
         self._pandemic_sim_opts_field_names = {f.name for f in dataclasses.fields(SimulationSettings)}
 

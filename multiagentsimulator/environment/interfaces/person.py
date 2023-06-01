@@ -35,18 +35,10 @@ class PersonState:
 
 
 class Person(ABC):
-    """Class that implements a sim person automaton with a pre-defined policy."""
 
     @abstractmethod
     def step(self, sim_time: SimulationTime, contact_tracer: Optional[ContactTracer] = None) -> Optional[NoOP]:
-        """
-        Method that steps through the person's policy. The step can return a
-        NoOp to indicate no operation was carried out.
 
-        :param sim_time: Current simulation time.
-        :param contact_tracer: Traces of previous contacts of the person.
-        :return: Return NoOp if no operation was carried out otherwise None.
-        """
         pass
 
     @abstractmethod

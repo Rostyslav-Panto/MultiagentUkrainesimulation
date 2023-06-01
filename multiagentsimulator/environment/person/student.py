@@ -7,7 +7,6 @@ from ..interfaces import PersonRoutineWithStatus, PersonState, LocationID, Simul
 
 
 class Student(BasePerson):
-    """Class that implements a school going minor."""
 
     _university: Optional[LocationID] = None
     _university_time: SimulationTimeTuple
@@ -22,14 +21,7 @@ class Student(BasePerson):
                  university_time: Optional[SimulationTimeTuple] = None,
                  regulation_compliance_prob: float = 1.0,
                  init_state: Optional[PersonState] = None):
-        """
-        :param person_id: PersonID instance
-        :param home: Home location id
-        :param university: school location id
-        :param university_time: school time specified in SimTimeTuples. Default - 9am-5pm and Mon-Fri
-        :param regulation_compliance_prob: probability of complying to a regulation
-        :param init_state: Optional initial state of the person
-        """
+
         assert 18 < person_id.age <= 21, "A student's age should be <= 21"
         self._university = university
         self._university_time = university_time or SimulationTimeTuple(hours=tuple(range(9, 15)), week_days=tuple(range(0, 5)))
@@ -54,11 +46,9 @@ class Student(BasePerson):
 
     @property
     def at_university(self) -> bool:
-        """Return True if the person is at school and False otherwise"""
         return self.university is not None and self._state.current_location == self.university
 
     def set_outside_school_routines(self, routines: Sequence[PersonRoutine]) -> None:
-        """A sequence of person routines to run outside school time"""
         for routine in routines:
             if routine not in self._routines:
                 self._routines.append(routine)

@@ -9,6 +9,5 @@ class SchoolState(NonEssentialBusinessLocationState):
 
 
 class School(UnnecessaryBusinessBaseLocation[SchoolState]):
-    """Implements a simple school"""
 
     state_type = SchoolState

@@ -84,15 +84,13 @@ def _get_age_limit_from_age(age: int) -> _AgeLimit:
 
 @dataclass(frozen=True)
 class SEIRInfectionState(IndividualInfectionState):
-    """State of the infection according to SEIR."""
     label: _SEIRLabel = required()
 
 
 @dataclass(frozen=True)
 class SpreadProbabilityParams:
-    """Parameters for individual spread probabilities."""
-    mean: float = 0.9
-    sigma: float = 0.9
+    mean: float = 0.4
+    sigma: float = 0.5
 
 
 _TransitionProbability = Dict[_SEIRLabel, float]
@@ -101,8 +99,6 @@ _ModelDescription = Dict[_SEIRLabel, _ModelDescriptionValue]
 
 
 class SEIRModel(InfectionModel):
-    """Model of the spreading of the infection."""
-
     _model: _ModelDescription
     _seir_to_summary: Dict[_SEIRLabel, InfectionSummary] = {
         _SEIRLabel.susceptible: InfectionSummary.NONE,
@@ -122,13 +118,13 @@ class SEIRModel(InfectionModel):
     _pandemic_start_limit: int
 
     def __init__(self,
-                 symp_proportion: float = 0.57,
+                 symp_proportion: float = 0.56,
                  exposed_rate: Optional[float] = None,
-                 pre_asymp_rate: float = 1. / 2.3,
-                 pre_symp_rate: float = 1. / 2.3,
+                 pre_asymp_rate: float = 1. / 2.1,
+                 pre_symp_rate: float = 1. / 2.1,
                  recovery_rate_asymp: Optional[float] = None,
                  recovery_rate_symp_non_treated: Optional[float] = None,
-                 recovery_rate_needs_hosp: float = 0.0214286,
+                 recovery_rate_needs_hosp: float = 0.0214827,
                  recovery_rate_hosp: Optional[float] = None,
                  hosp_rate_symp: Optional[Dict[Tuple[_AgeLimit, Risk], float]] = None,
                  death_rate_hosp: Optional[Dict[Tuple[_AgeLimit, Risk], float]] = None,
@@ -137,19 +133,19 @@ class SEIRModel(InfectionModel):
                  from_needs_hosp_to_death_rate: float = 0.3,
                  from_hosp_to_death_rate: Optional[float] = None,
                  spread_probability_params: Optional[SpreadProbabilityParams] = None,
-                 pandemic_start_limit: int = 1000):
+                 pandemic_start_limit: int = 150):
         self._numpy_rng = globals.numpy_rng
         assert self._numpy_rng, 'No numpy rng found. Either pass a rng or set the default repo wide rng.'
 
-        exposed_rate = 1. / self._numpy_rng.triangular(1.9, 2.9, 3.9) if exposed_rate is None else exposed_rate
-        recovery_rate_asymp = 1. / self._numpy_rng.triangular(3.0, 4.0, 5.0) if recovery_rate_asymp is None else \
+        exposed_rate = 1. / 2.8 if exposed_rate is None else exposed_rate
+        recovery_rate_asymp = 1. / 4.4 if recovery_rate_asymp is None else \
             recovery_rate_asymp
-        recovery_rate_symp_non_treated = 1. / self._numpy_rng.triangular(3.0, 4.0, 5.0) \
+        recovery_rate_symp_non_treated = 1. / 4.4 \
             if recovery_rate_symp_non_treated is None else recovery_rate_symp_non_treated
 
-        recovery_rate_hosp = 1. / self._numpy_rng.triangular(9.4, 10.7, 12.8) if recovery_rate_hosp is None \
+        recovery_rate_hosp = 1. / 10.1 if recovery_rate_hosp is None \
             else recovery_rate_hosp
-        from_hosp_to_death_rate = 1. / self._numpy_rng.triangular(5.2, 8.1, 10.1) if from_hosp_to_death_rate is None \
+        from_hosp_to_death_rate = 1. / 8.2 if from_hosp_to_death_rate is None \
             else from_hosp_to_death_rate
 
         hosp_rate_symp = hosp_rate_symp if hosp_rate_symp else _DEFAULT_HOSP_RATE_SYMP
@@ -260,15 +256,6 @@ class SEIRModel(InfectionModel):
 
     def step(self, subject_state: Optional[IndividualInfectionState], subject_age: int,
              subject_risk: Risk, infection_probability: float) -> IndividualInfectionState:
-        """
-        This method implements the SEIR model for the infection.
-        :param subject_state: Current SEIR state for the subject.
-        :param subject_age: Age of the subject.
-        :param subject_risk: Health risk for the subject.
-        :param infection_probability: Probability of getting infected.
-
-        :return: New SEIR state of the subject.
-        """
         show_symptoms_states = {_SEIRLabel.symp, _SEIRLabel.hospitalized, _SEIRLabel.needs_hospitalization}
         pandemic_started = self._pandemic_started_counter >= self._pandemic_start_limit
         label = _SEIRLabel.susceptible if pandemic_started else _SEIRLabel.exposed

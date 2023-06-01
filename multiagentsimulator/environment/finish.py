@@ -53,16 +53,11 @@ class DoneFunctionFactory:
 
 
 class ORDone(DoneFunction):
-    """
-    Done function that takes logical OR of multiple done functions
-    """
 
     _done_fns: List[DoneFunction]
 
     def __init__(self, done_fns: List[DoneFunction], *args: Any, **kwargs: Any):
-        """
-        :param done_fns: List of done functions to take logical OR.
-        """
+
         super().__init__(*args, **kwargs)
         self._done_fns = done_fns
 
@@ -75,7 +70,6 @@ class ORDone(DoneFunction):
 
 
 class InfectionSummaryAboveThresholdDone(DoneFunction):
-    """Returns True if the infection summary of the given type is above a threshold."""
     _threshold: float
     _index: int
 
@@ -90,7 +84,6 @@ class InfectionSummaryAboveThresholdDone(DoneFunction):
 
 
 class NoMoreInfectionsDone(DoneFunction):
-    """Returns True if the number of infected and critical becomes zero and all have recovered."""
 
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
@@ -115,15 +108,11 @@ class NoMoreInfectionsDone(DoneFunction):
 
 
 class NoPandemicDone(DoneFunction):
-    """Returns True if the pandemic hasn't started within the specified number of days."""
 
     _num_days: int
     _pandemic_exists: bool
 
     def __init__(self, num_days: int, *args: Any, **kwargs: Any):
-        """
-        :param num_days: number of days to check if pandemic has started
-        """
         super().__init__(*args, **kwargs)
         self._pandemic_exists = False
         self._num_days = num_days

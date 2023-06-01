@@ -9,7 +9,7 @@ def run_pandemic_gym_env() -> None:
     ps.init_globals(seed=0)
 
     # select a simulator config
-    sim_config = ps.sh.small_town_config
+    sim_config = ps.sh.kyiv_config
 
     # make env
     env = ps.env.GymEnvironment.from_config(sim_config, pandemic_regulations=ps.sh.ukraine_regulations)

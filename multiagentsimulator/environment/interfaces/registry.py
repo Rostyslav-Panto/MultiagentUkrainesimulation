@@ -58,38 +58,28 @@ class Registry(ABC):
     @property
     @abstractmethod
     def person_ids(self) -> Set[PersonID]:
-        """Return a list of registered person ids"""
         pass
 
     @property
     @abstractmethod
     def location_ids(self) -> Set[LocationID]:
-        """Return a list of registered location ids"""
         pass
 
     @property
     @abstractmethod
     def location_ids_with_social_events(self) -> List[LocationID]:
-        """Return a list of location ids where there are active social events."""
-
+        pass
     @property
     @abstractmethod
     def global_location_summary(self) -> Mapping[Tuple[str, str], LocationSummary]:
-        """Return a mapping between (a location type name, person type name) and the location summary
-           E.g.: {('School', 'Minor'): LocationSummary(entry_count=10)}
-        """
-
+        pass
     @property
     @abstractmethod
     def location_types(self) -> Set[str]:
-        """Return a set of registered location types (as str)."""
-
-    # ----------------location utility methods-----------------
-
+        pass
     @abstractmethod
     def location_ids_of_type(self, location_type: Union[type, Tuple[type, ...]]) -> Tuple[LocationID, ...]:
-        """Return a tuple of location ids for the given type of location."""
-
+        pass
     @abstractmethod
     def get_persons_in_location(self, location_id: LocationID) -> Set[PersonID]:
         """Return a list of persons in the given location"""

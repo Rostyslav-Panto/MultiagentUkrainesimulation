@@ -31,7 +31,7 @@ small_town_config = SimulationConfigs(
 
 
 def get_kyiv_configs():
-    city = City(distance=2000)
+    city = City(distance=5000)
     buildings = city.get_classified_buildings_in_distance()
     homes = buildings["Home"]
     stores = buildings["Store"]
@@ -69,6 +69,7 @@ class KyivSimConfigs(SimulationConfigs):
 
 
 kyiv_config = KyivSimConfigs(
-    num_persons=5000,
+    num_persons=10000,
     location_configs=get_kyiv_configs(),
     person_routine_assignment=DefaultPersonRoutineAssignment())
+

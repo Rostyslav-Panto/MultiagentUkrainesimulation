@@ -12,8 +12,6 @@ from .simulator_settings import SimulationSettings
 
 
 class GymEnvironment(gym.Env):
-    """A gym environment interface wrapper for the Pandemic Simulator."""
-
     _pandemic_sim: Simulator
     _stage_to_regulation: Mapping[int, ChosenRegulation]
     _obs_history_size: int
@@ -34,15 +32,6 @@ class GymEnvironment(gym.Env):
                  sim_steps_per_regulation: int = 24,
                  non_essential_business_location_ids: Optional[List[LocationID]] = None,
                  ):
-        """
-        :param pandemic_sim: Pandemic simulator instance
-        :param pandemic_regulations: A sequence of pandemic regulations
-        :param reward_fn: reward function
-        :param done_fn: done function
-        :param obs_history_size: number of latest sim step states to include in the observation
-        :param sim_steps_per_regulation: number of sim_steps to run for each regulation
-        :param non_essential_business_location_ids: an ordered list of non-essential business location ids
-        """
         self._pandemic_sim = pandemic_sim
         self._stage_to_regulation = {reg.stage: reg for reg in pandemic_regulations}
         self._obs_history_size = obs_history_size
@@ -69,17 +58,6 @@ class GymEnvironment(gym.Env):
                     obs_history_size: int = 1,
                     non_essential_business_location_ids: Optional[List[LocationID]] = None,
                     ) -> 'GymEnvironment':
-        """
-        Creates an instance using config
-
-        :param sim_config: Simulator config
-        :param pandemic_regulations: A sequence of pandemic regulations
-        :param sim_opts: Simulator opts
-        :param reward_fn: reward function
-        :param done_fn: done function
-        :param obs_history_size: number of latest sim step states to include in the observation
-        :param non_essential_business_location_ids: an ordered list of non-essential business location ids
-        """
         sim = Simulator.from_config(sim_config, sim_opts)
 
         if sim_config.max_hospital_capacity == -1:

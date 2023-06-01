@@ -9,16 +9,12 @@ from ..interfaces import PersonID, InfectionSummary, BusinessLocationState, Simu
 @dataclass
 class HospitalState(BusinessLocationState):
     patient_capacity: int = -1
-    """Number of patients allowed to be admitted to the Hospital"""
 
     patients_in_location: Set[PersonID] = field(default_factory=set, init=False)
-    """A set of ids of patients who are currently in the location. Default is an empty set."""
 
     num_admitted_patients: int = field(init=False, default=0)
-    """Number of admitted patients"""
 
     open_time: SimulationTimeTuple = field(default_factory=SimulationTimeTuple, init=False)
-    """Always open"""
 
     @property
     def persons_in_location(self) -> Set[PersonID]:
@@ -28,8 +24,6 @@ class HospitalState(BusinessLocationState):
 
 
 class Hospital(BusinessBaseLocation[HospitalState]):
-    """Class that implements a basic hospital location. """
-
     state_type = HospitalState
 
     def is_entry_allowed(self, person_id: PersonID) -> bool:

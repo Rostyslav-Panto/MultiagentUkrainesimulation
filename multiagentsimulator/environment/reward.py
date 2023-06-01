@@ -54,19 +54,14 @@ class RewardFunctionFactory:
 
 
 class SumReward(RewardFunction):
-    """
-    Reward function that sums the values of multiple reward functions.
-    """
+
     _reward_fns: List[RewardFunction]
     _weights: np.ndarray
 
     def __init__(self, reward_fns: List[RewardFunction], weights: Optional[List[float]] = None,
                  *args: Any,
                  **kwargs: Any):
-        """
-        :param reward_fns: List of reward functions to sum.
-        :param weights: Weights for each reward function. If None, each weight is set to 1.
-        """
+
         super().__init__(*args, **kwargs)
         if weights is not None:
             assert len(weights) == len(reward_fns), 'There must be one weight for each reward function.'
@@ -81,7 +76,6 @@ class SumReward(RewardFunction):
 
 
 class InfectionSummaryIncreaseReward(RewardFunction):
-    """Returns a negative reward proportional to the relative increase in the infection summary of the given type."""
     _index: int
 
     def __init__(self, summary_type: InfectionSummary, *args: Any, **kwargs: Any):
@@ -98,7 +92,6 @@ class InfectionSummaryIncreaseReward(RewardFunction):
 
 
 class InfectionSummaryAbsoluteReward(RewardFunction):
-    """Returns a negative reward proportional to the absolute value of the given type of infection summary."""
     _index: int
 
     def __init__(self, summary_type: InfectionSummary, *args: Any, **kwargs: Any):
@@ -111,7 +104,6 @@ class InfectionSummaryAbsoluteReward(RewardFunction):
 
 
 class InfectionSummaryAboveThresholdReward(RewardFunction):
-    """Returns a negative reward if the infection summary of the given type is above a threshold."""
     _threshold: float
     _index: int
 
@@ -127,14 +119,9 @@ class InfectionSummaryAboveThresholdReward(RewardFunction):
 
 
 class UnlockedBusinessLocationsReward(RewardFunction):
-    """Returns a positive reward proportional to the number of unlocked business locations."""
     _obs_indices: Optional[Sequence[int]] = None
 
     def __init__(self, obs_indices: Optional[Sequence[int]] = None, *args: Any, **kwargs: Any):
-        """
-        :param obs_indices: indices of certain business locations in obs to use. If None, all business location ids
-            are used.
-        """
         super().__init__(*args, **kwargs)
         self._obs_indices = obs_indices
 
@@ -148,13 +135,9 @@ class UnlockedBusinessLocationsReward(RewardFunction):
 
 
 class LowerStageReward(RewardFunction):
-    """Returns a positive reward inversely proportional to the regulation stages."""
     _stage_rewards: np.ndarray
 
     def __init__(self, num_stages: int, *args: Any, **kwargs: Any):
-        """
-        :param num_stages: total number of stages
-        """
         super().__init__(*args, **kwargs)
         stage_rewards = np.arange(0, num_stages) ** 1.5
         self._stage_rewards = stage_rewards / np.max(stage_rewards)

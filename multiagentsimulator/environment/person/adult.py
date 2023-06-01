@@ -8,7 +8,6 @@ from ..interfaces import PersonState, LocationID, SimulationTime, NoOP, Simulati
 
 
 class Adult(BasePerson):
-    """Class that implements a basic worker."""
 
     _work: LocationID
     _work_time: SimulationTimeTuple
@@ -24,14 +23,7 @@ class Adult(BasePerson):
                  work_time: Optional[SimulationTimeTuple] = None,
                  regulation_compliance_prob: float = 1.0,
                  init_state: Optional[PersonState] = None):
-        """
-        :param person_id: PersonID instance
-        :param home: Home location id
-        :param work: Work location id
-        :param work_time: Work time specified in SimTimeTuples. Default - 9am-5pm and Mon-Fri
-        :param regulation_compliance_prob: probability of complying to a regulation
-        :param init_state: Optional initial state of the person
-        """
+
         assert person_id.age >= 18, "Workers's age must be >= 18"
         self._work = work
         self._work_time = work_time or SimulationTimeTuple(hours=tuple(range(9, 18)), week_days=tuple(range(0, 5)))
@@ -55,18 +47,15 @@ class Adult(BasePerson):
 
     @property
     def at_work(self) -> bool:
-        """Return True if the person is at work and False otherwise"""
         return self._state.current_location == self.work
 
     def set_during_work_routines(self, routines: Sequence[PersonRoutine]) -> None:
-        """A sequence of person routines to run during work time"""
         for routine in routines:
             if routine not in self._routines:
                 self._routines.append(routine)
                 self._during_work_rs.append(PersonRoutineWithStatus(routine))
 
     def set_outside_work_routines(self, routines: Sequence[PersonRoutine]) -> None:
-        """A sequence of person routines to run outside work time"""
         for routine in routines:
             if routine not in self._routines:
                 self._routines.append(routine)

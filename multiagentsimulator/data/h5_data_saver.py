@@ -13,7 +13,6 @@ from ..utils import shallow_asdict
 
 
 class H5DataSaver(ExperimentDataSaver):
-    """Implement a H5 experiment data saver"""
 
     _filename: Path
     _f: h5.File
@@ -21,11 +20,7 @@ class H5DataSaver(ExperimentDataSaver):
     _rewards: Optional[np.ndarray]
 
     def __init__(self, filename: str, path: Path = Path(''), overwrite: bool = False) -> None:
-        """
-        :param filename: filename
-        :param path: path to store the h5 dataset
-        :param overwrite: set to True to overwrite the dataset if one exists already at the specified path
-        """
+
         self._filename = path / filename
         if self._filename.exists() and not overwrite:
             raise ValueError(f'{self._filename} already exists! Specify a new path or set overwrite=True')

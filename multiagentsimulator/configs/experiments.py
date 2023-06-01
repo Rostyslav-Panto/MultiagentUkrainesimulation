@@ -20,7 +20,6 @@ def seeded_experiment_main(exp_id: int,
                            enable_warm_up: bool = False,
                            max_episode_length: int = 120,
                            random_seed: int = 0) -> bool:
-    """A helper that runs an experiment with the given seed and records data"""
     init_globals(seed=random_seed)
     env = GymEnvironment.from_config(sim_config=sim_config,
                                      sim_opts=sim_opts,
@@ -71,7 +70,6 @@ def experiment_main(exp_id: int,
                     enable_warm_up: bool = False,
                     max_episode_length: int = 120,
                     num_random_seeds: int = 5) -> None:
-    """A helper that runs multi-seeded experiments and records data."""
     rng = np.random.RandomState(seed=0)
     num_evaluated_seeds = 0
     while num_evaluated_seeds < num_random_seeds:

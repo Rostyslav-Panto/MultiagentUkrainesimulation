@@ -24,8 +24,6 @@ class ExperimentResult:
 
 
 class ExperimentDataLoader(ABC):
-    """An interface for a data loader."""
 
     def get_data(self) -> Sequence[ExperimentResult]:
-        """Return data as a sequence of ExperimentResult instances"""
         pass

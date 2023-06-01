@@ -6,15 +6,7 @@ from ..interfaces import PersonRoutineWithStatus, NoOP, NOOP, LocationID, Specia
 
 
 def execute_routines(person: BasePerson, routines_with_status: Sequence[PersonRoutineWithStatus]) -> Optional[NoOP]:
-    """
-    Executes the given routines of the person in the simulator.
-    Note that this function updates (mutates) status flags in the routines_with_status instances.
 
-    :param person: person to execute the routine
-    :param routines_with_status: a sequence of PersonRoutineWithStatus instances
-    :return: returns a NOOP if none of the routines were executed (typically happens when the routines
-        conditions are not met), otherwise None.
-    """
     numpy_rng = globals.numpy_rng
     # the overall flow is that if a routine is due, start it and block the execution of other routines
     # until it has completed

@@ -42,7 +42,7 @@ def make_evaluation_plots_from_data(data: Sequence[ExperimentResult],
 
     gs1: Optional[GridSpec] = None
     if show_summary_plots:
-        figsize = figsize if figsize is not None else ((16, 6) if n_params <= 5 else (20, 12))
+        figsize = figsize if figsize is not None else ((32, 12) if n_params <= 5 else (40, 24))
         fig = plt.figure(num=sup_title, figsize=figsize)
         gs1 = GridSpec(n_params, 3)
         axs = np.array([fig.add_subplot(sp) for sp in gs1]).reshape(n_params, 3)

@@ -21,7 +21,6 @@ class CemeteryState(LocationState):
 
 
 class Cemetery(BaseLocation[CemeteryState]):
-    """Class that implements a cemetery location. """
 
     location_rule_type = CemeteryRule
     state_type = CemeteryState

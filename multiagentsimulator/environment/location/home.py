@@ -11,7 +11,6 @@ class HomeState(LocationState):
 
 
 class Home(BaseLocation[HomeState]):
-    """Class that implements a standard Home location. """
     state_type = HomeState
 
     def sync(self, sim_time: SimulationTime) -> None:

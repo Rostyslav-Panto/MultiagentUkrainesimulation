@@ -8,7 +8,6 @@ from .simulation_time import SimulationTimeTuple
 
 @dataclasses.dataclass(frozen=True)
 class LocationRule:
-    """A rule to modify the location's operation."""
     contact_rate: Union[ContactRate, Default, None] = None
     visitor_time: Union[SimulationTimeTuple, Default, None] = None
     visitor_capacity: Union[Default, int, None] = None

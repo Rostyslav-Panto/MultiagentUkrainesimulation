@@ -10,7 +10,6 @@ class StoreState(BusinessLocationState):
 
 
 class Store(NecessaryBusinessBaseLocation[StoreState]):
-    """Implements a grocery store location."""
 
     state_type = StoreState
 

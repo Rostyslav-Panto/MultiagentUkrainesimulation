@@ -11,17 +11,13 @@ if __name__ == '__main__':
         ChosenRegulation(stay_home_if_sick=True, quarantine_if_contact_positive=True, stage=2)
     ]
     simulation_settings = {
-        # 'CON-2': (2, SimulationSettings(use_contact_tracer=True, contact_tracer_history_size=2)),
-        # 'CON-5': (2, SimulationSettings(use_contact_tracer=True, contact_tracer_history_size=5)),
-        # 'CON-10': (2, SimulationSettings(use_contact_tracer=True, contact_tracer_history_size=10)),
-        # 'SICK+': (1, SimulationSettings(random_testing_rate=0.3)),
-        'CON-2+': (2, SimulationSettings(use_contact_tracer=True, contact_tracer_history_size=2,
+        'Larger SICK': (0, SimulationSettings(random_testing_rate=0.3)),
+        'CON 2': (0, SimulationSettings(use_contact_tracer=True, contact_tracer_history_size=2,
                                       random_testing_rate=0.3)),
-        'CON-5+': (2, SimulationSettings(use_contact_tracer=True, contact_tracer_history_size=5,
+        'CON 5': (0, SimulationSettings(use_contact_tracer=True, contact_tracer_history_size=5,
                                       random_testing_rate=0.3)),
-        'CON-10+': (2, SimulationSettings(use_contact_tracer=True, contact_tracer_history_size=10,
+        'CON 15': (0, SimulationSettings(use_contact_tracer=True, contact_tracer_history_size=15,
                                        random_testing_rate=0.3)),
-        # 'SICK++': (1, SimulationSettings(random_testing_rate=1.)),
     }
     param_labels, strategies, sim_opts = zip(*[(k, v[0], v[1]) for k, v in simulation_settings.items()])
 

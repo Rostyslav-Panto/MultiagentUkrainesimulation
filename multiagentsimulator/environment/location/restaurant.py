@@ -13,5 +13,4 @@ class RestaurantState(NonEssentialBusinessLocationState):
 
 
 class Restaurant(UnnecessaryBusinessBaseLocation[RestaurantState]):
-    """Implements a restaurant location."""
     state_type = RestaurantState

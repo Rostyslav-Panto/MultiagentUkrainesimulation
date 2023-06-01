@@ -125,14 +125,14 @@ class BaseMatplotLibViz(PandemicViz):
         ax.set_ylabel('persons')
         ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
-    def plot_stages(self, ax: Optional[Axes] = None, **kwargs: Any) -> None:
-        ax = ax or plt.gca()
-        stages = np.concatenate(self._stages).squeeze()
-        ax.plot(stages)
-        ax.set_ylim(-0.1, kwargs.get('num_stages', np.max(self._stages)) + 1)
-        ax.set_title('Stage')
-        ax.set_xlabel('time (days)')
-        ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+    # def plot_stages(self, ax: Optional[Axes] = None, **kwargs: Any) -> None:
+    #     ax = ax or plt.gca()
+    #     stages = np.concatenate(self._stages).squeeze()
+    #     ax.plot(stages)
+    #     ax.set_ylim(-0.1, kwargs.get('num_stages', np.max(self._stages)) + 1)
+    #     ax.set_title('Stage')
+    #     ax.set_xlabel('time (days)')
+    #     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
     @staticmethod
     def annotate_plot(ax: Axes, label: str) -> None:

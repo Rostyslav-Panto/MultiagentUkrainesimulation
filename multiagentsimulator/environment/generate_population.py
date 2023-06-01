@@ -5,7 +5,7 @@ import numpy as np
 
 from . import University
 from .interfaces import globals, Risk, Person, PersonID, PersonState, BusinessBaseLocation
-from .job_counselor import JobCounselor
+from .job_recruiter import JobRecruiter
 from .location import Home, School
 from .person import Retired, Adult, Child
 from .person.student import Student
@@ -128,7 +128,7 @@ def generate_population(sim_config: SimulationConfigs) -> List[Person]:
     work_ids = registry.location_ids_of_type(BusinessBaseLocation)
     assert len(work_ids) > 0, 'no business locations found!'
     for home, age in adult_homes_ages:
-        job_counselor = JobCounselor(sim_config.location_configs)
+        job_counselor = JobRecruiter(sim_config.location_configs)
         work_package = job_counselor.next_available_work()
         assert work_package, 'Not enough available jobs, increase the capacity of certain businesses'
         persons.append(Adult(person_id=PersonID(f'worker_{str(uuid4())}', age),
